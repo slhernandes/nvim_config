@@ -17,11 +17,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-Space>'] = cmp.mapping.complete(),
 })
 
-lsp.set_sign_icons({
-  error = '✘',
-  warn = '▲',
-  hint = '⚑',
-  info = '»'
+lsp.set_preferences({
+  sign_icons = { }
 })
 
 lsp.setup_nvim_cmp({

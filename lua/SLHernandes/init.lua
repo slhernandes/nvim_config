@@ -12,4 +12,8 @@ vim.g.clipboard = {
   },
   cache_enable = 0,
 }
-require('palenight').set()
+vim.api.nvim_exec([[
+  autocmd BufNewFile *.cpp 0r ~/.vim/templates/template.cpp
+  ]],
+  false
+)

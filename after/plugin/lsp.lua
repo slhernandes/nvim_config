@@ -3,11 +3,9 @@ local lsp = require('lsp-zero')
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-	--	'sumneko_lua',
+	'lua-language-server',
 	'rust_analyzer',
 	'clangd',
-	'java_language_server',
-	'pyright',
 })
 
 local cmp = require('cmp')

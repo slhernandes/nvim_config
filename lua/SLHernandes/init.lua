@@ -1,5 +1,5 @@
 require("SLHernandes.remap")
-print("Welcome to nvim")
+require("SLHernandes.set")
 vim.g.clipboard = {
   name = "win32yank-wsl",
   copy = {

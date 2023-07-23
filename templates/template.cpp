@@ -13,3 +13,7 @@ ostream& operator<<(ostream& stream, vector<T> var) {
   stream << endl;
   return stream;
 }
+
+int main() {
+  return 0;
+}

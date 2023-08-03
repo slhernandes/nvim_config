@@ -41,5 +41,16 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
+  use 'nvim-tree/nvim-web-devicons'
   use 'prichrd/netrw.nvim'
+  use 'nvim-treesitter/nvim-treesitter-context'
+  use {
+    'jim-fx/sudoku.nvim',
+    cmd = "Sudoku",
+    config = function()
+      require("sudoku").setup({
+        -- configuration ...
+      })
+    end
+  }
 end)

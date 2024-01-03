@@ -1,6 +1,5 @@
 require("SLHernandes.remap")
 require("SLHernandes.set")
-require("SLHernandes.packer")
 vim.api.nvim_exec([[
   autocmd BufNewFile 1*.cpp 0r ~/.config/nvim/templates/template.cpp
   ]],

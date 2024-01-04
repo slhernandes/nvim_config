@@ -10,3 +10,8 @@ vim.api.nvim_exec([[
   ]],
   false
 )
+vim.api.nvim_exec([[
+ set rtp^="/home/samuelhernandes/.opam/default/share/ocp-indent/vim"
+ ]],
+ false
+)

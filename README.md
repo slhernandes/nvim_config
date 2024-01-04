@@ -18,6 +18,9 @@ to move the nvim config.
 ### 2. Clone the nvim config and sync the plugins ###
 ```sh
 git clone git@github.com:slhernandes/nvim_config.git
+```
+**Make sure to properly clone the project before continuing**
+```sh
 mv nvim_config nvim
 nvim .
 ```

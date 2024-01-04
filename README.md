@@ -24,6 +24,8 @@ git clone git@github.com:slhernandes/nvim_config.git
 mv nvim_config nvim
 nvim .
 ```
+, and if the plugins are not loaded, type:
 ```vim
 :Lazy sync
 ```
+to sync the plugins.

@@ -10,7 +10,7 @@ cd ~/.config
 rm -rf nvim
 
 ```
-to delete the nvim config, or
+to delete the existing nvim config, or
 ```sh
 cd ~/.config
 mv nvim .nvim.bak

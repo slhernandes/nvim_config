@@ -17,7 +17,7 @@ mv nvim .nvim.bak
 to move the nvim config.
 ### 2. Clone the nvim config and sync the plugins ###
 ```sh
-git clone https://github.com/slhernandes/nvim_config.git
+git clone git@github.com:slhernandes/nvim_config.git
 mv nvim_config nvim
 nvim .
 ```

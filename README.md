@@ -1,11 +1,26 @@
-# nvim_config
-## installation
+# nvim_config #
+## Dependencies ##
+* [Neovim](https://github.com/neovim/neovim/releases/tag/v0.9.5)
+## Installation ##
+### 1. Delete or move existing nvim config ###
+Do
 ```sh
-cd
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-git clone git@github.com:slhernandes/nvim_config.git
-mkdir .config
-mv nvim_config ~/.config/nvim
-cd ~/.config/nvim
+cd ~/.config
+rm -rf nvim
+
+```
+to delete the nvim config, or
+```sh
+cd ~/.config
+mv nvim .nvim.bak
+```
+to move the nvim config.
+### 2. Clone the nvim config and sync the plugins ###
+```sh
+git clone https://github.com/slhernandes/nvim_config.git
+mv nvim_config nvim
+nvim .
+```
+```vim
+:Lazy sync
 ```

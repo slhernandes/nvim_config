@@ -6,19 +6,20 @@ My (relatively) minimal neovim config with plugins installed with [lazy.nvim](ht
 ### 1. Delete or move existing nvim config ###
 Do
 ```sh
+rm -rf ~/.config/nvim ~/.local/share/nvim
 cd ~/.config
-rm -rf nvim
-
 ```
 to delete the existing nvim config, or
 ```sh
 cd ~/.config
 mv nvim .nvim.bak
+rm -rf ~/.local/share/nvim
 ```
 to move the nvim config.
 ### 2. Clone the nvim config and sync the plugins ###
 ```sh
 git clone git@github.com:slhernandes/nvim_config.git
+|| git clone https://github.com/slhernandes/nvim_config.git
 ```
 **Make sure to properly clone the project before continuing**
 ```sh

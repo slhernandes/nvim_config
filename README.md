@@ -1,4 +1,5 @@
 # nvim_config #
+My (relatively) minimal neovim config with plugins installed with (lazy.nvim)[https://github.com/folke/lazy.nvim] package manager
 ## Dependencies ##
 * [Neovim](https://github.com/neovim/neovim/releases/tag/v0.9.5)
 ## Installation ##
@@ -24,7 +25,7 @@ git clone git@github.com:slhernandes/nvim_config.git
 mv nvim_config nvim
 nvim .
 ```
-, and if the plugins are not loaded, type:
+, and if the plugins are not loaded or not updated, type:
 ```vim
 :Lazy sync
 ```

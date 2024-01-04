@@ -1,5 +1,5 @@
 # nvim_config #
-My (relatively) minimal neovim config with plugins installed with (lazy.nvim)[https://github.com/folke/lazy.nvim] package manager
+My (relatively) minimal neovim config with plugins installed with [lazy.nvim](https://github.com/folke/lazy.nvim) package manager
 ## Dependencies ##
 * [Neovim](https://github.com/neovim/neovim/releases/tag/v0.9.5)
 ## Installation ##

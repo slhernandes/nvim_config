@@ -8,10 +8,10 @@ return {
         if term.direction == "horizontal" then
           return 15
         elseif term.direction == "vertical" then
-          return vim.o.columns * 0.4
+          return 85
         end
       end,
-      open_mapping = '<leader>t',
+      open_mapping = '<leader>vt',
       hide_numbers = false, -- hide the number column in toggleterm buffers
       shade_filetypes = {},
       autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened

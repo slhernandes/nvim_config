@@ -10,8 +10,10 @@ return {
         --    section_separators = { left = '', right = ''},
         --    component_separators = { left = '', right = ''},
         --    section_separators = { left = '', right = ''},
-        component_separators = { left = '/', right = '/'},
-        section_separators = { left = '', right = ''},
+        -- component_separators = { left = '/', right = '/'},
+        -- section_separators = { left = '', right = ''},
+        component_separators = { left = '|', right = '|'},
+        section_separators = { left = '', right = ''},
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -28,13 +30,13 @@ return {
       sections = {
         lualine_a = {'mode'},
         lualine_b = {'branch'},
-        lualine_c = {'filename'},
+        lualine_c = {'buffers'},
         lualine_x = {'progress', 'fileformat'},
         lualine_y = {'filetype'},
         lualine_z = {'location'}
       },
       inactive_sections = {
-        lualine_a = {},
+        lualine_a = {'filename'},
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},

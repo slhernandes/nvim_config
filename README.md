@@ -2,6 +2,8 @@
 My (relatively) minimal neovim config with plugins installed with [lazy.nvim](https://github.com/folke/lazy.nvim) package manager
 ## Dependencies ##
 * [Neovim](https://github.com/neovim/neovim/releases/tag/v0.9.5)
+* [Ripgrep](https://github.com/BurntSushi/ripgrep)
+* [Nerdfont](https://github.com/ryanoasis/nerd-fonts)
 ## Installation ##
 ### 1. Delete or move existing nvim config ###
 Do

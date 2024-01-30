@@ -4,7 +4,7 @@ return {
   config = function()
     require('lualine').setup {
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = 'tokyonight',
         --    component_separators = { left = '', right = ''},
         --    section_separators = { left = '', right = ''},
@@ -29,9 +29,9 @@ return {
       },
       sections = {
         lualine_a = {'mode'},
-        lualine_b = {'branch'},
+        lualine_b = {'branch', 'diff'},
         lualine_c = {'buffers'},
-        lualine_x = {'progress', 'fileformat'},
+        lualine_x = {'diagnostics'},
         lualine_y = {'filetype'},
         lualine_z = {'location'}
       },

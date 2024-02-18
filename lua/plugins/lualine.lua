@@ -32,7 +32,7 @@ return {
         }
       },
       sections = {
-        lualine_a = { nonicons_extention.mode, 'mode' },
+        lualine_a = { nonicons_extention.mode },
         lualine_b = {
           {
             "branch",

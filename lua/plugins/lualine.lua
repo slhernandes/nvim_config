@@ -1,7 +1,11 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
+  dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
   config = function()
+
+    local icons = require("nvim-nonicons")
+    local nonicons_extention = require("nvim-nonicons.extentions.lualine")
+
     require('lualine').setup {
       options = {
         icons_enabled = true,
@@ -28,8 +32,13 @@ return {
         }
       },
       sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff'},
+        lualine_a = { nonicons_extention.mode },
+        lualine_b = {
+          {
+            "branch",
+            icon = icons.get("git-branch"),
+          },
+          'diff'},
         lualine_c = {'buffers'},
         lualine_x = {'diagnostics'},
         lualine_y = {'filetype'},

@@ -2,6 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
+    require 'nvim-treesitter.install'.compilers = { "gcc-12", "clang", "gcc" }
     require'nvim-treesitter.configs'.setup {
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
       ensure_installed = { "cpp", "c", "lua", "vim", "vimdoc", "query" , "latex" },

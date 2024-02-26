@@ -27,7 +27,5 @@ return {
       auto_scroll = true, -- automatically scroll to the bottom on terminal output
       -- This field is only relevant if direction is set to 'float'
     })
-
-    vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
   end,
 }

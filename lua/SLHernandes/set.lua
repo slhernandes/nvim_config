@@ -31,3 +31,4 @@ vim.opt.updatetime = 50
 vim.g.mapleader = " "
 vim.g.colorizer_auto_color = 1
 vim.g.colorizer_auto_filetype='css,html,conf'
+vim.opt.conceallevel = 3

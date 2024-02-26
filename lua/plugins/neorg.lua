@@ -8,6 +8,11 @@ return {
             load = {
                 ['core.defaults'] = {},
                 ['core.concealer'] = {},
+                ['core.presenter'] = {
+                  config = {
+                    zen_mode = "zen-mode",
+                  }
+                },
                 ['core.dirman'] = {
                     config = {
                         workspaces = {

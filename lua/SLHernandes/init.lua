@@ -11,6 +11,21 @@ vim.api.nvim_exec([[
   false
 )
 vim.api.nvim_exec([[
+  autocmd BufNewFile *.cc 0r ~/.config/nvim/templates/opp_template.cc
+  ]],
+  false
+)
+vim.api.nvim_exec([[
+  autocmd BufNewFile *.ned 0r ~/.config/nvim/templates/opp_template.ned
+  ]],
+  false
+)
+vim.api.nvim_exec([[
+  autocmd BufNewFile *.ini 0r ~/.config/nvim/templates/opp_template.ini
+  ]],
+  false
+)
+vim.api.nvim_exec([[
  set rtp^="/home/samuelhernandes/.opam/default/share/ocp-indent/vim"
  ]],
  false

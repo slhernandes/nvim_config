@@ -11,13 +11,13 @@ return {
           return 85
         end
       end,
-      open_mapping = '<leader>vt',
+      open_mapping = '<M-t>',
       hide_numbers = true, -- hide the number column in toggleterm buffers
       shade_filetypes = {},
       autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
       start_in_insert = true,
-      insert_mappings = false, -- whether or not the open mapping applies in insert mode
-      terminal_mappings = false, -- whether or not the open mapping applies in the opened terminals
+      insert_mappings = true, -- whether or not the open mapping applies in insert mode
+      terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
       persist_size = true,
       persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
       direction = 'vertical',
@@ -27,5 +27,6 @@ return {
       auto_scroll = true, -- automatically scroll to the bottom on terminal output
       -- This field is only relevant if direction is set to 'float'
     })
+    -- vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
   end,
 }

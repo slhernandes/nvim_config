@@ -40,6 +40,16 @@ return {
       ---@param c ColorScheme
       on_highlights = function(hl, c) 
         local prompt = "#2d3149"
+        local linenr_fg = "#737aa2"
+        hl.LineNr = {
+          fg = linenr_fg,
+        }
+        hl.LineNrAbove = {
+          fg = linenr_fg,
+        }
+        hl.LineNrBelow = {
+          fg = linenr_fg,
+        }
         hl.TelescopeNormal = {
           bg = c.bg_dark,
           fg = c.fg_dark,

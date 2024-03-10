@@ -13,6 +13,7 @@ return {
                     zen_mode = "zen-mode",
                   }
                 },
+                ['core.ui.calendar'] = {},
                 ['core.dirman'] = {
                     config = {
                         workspaces = {

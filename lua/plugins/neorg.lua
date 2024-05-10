@@ -7,7 +7,7 @@ return {
   {
     'nvim-neorg/neorg',
     ft = 'norg',
-    lazy = false,
+    lazy = true,
     dependencies = { 'luarocks.nvim' },
     version = '*',
 --  dependencies = { 'plenary.nvim' },

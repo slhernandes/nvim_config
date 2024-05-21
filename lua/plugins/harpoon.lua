@@ -40,8 +40,8 @@ return {
     -- end
     -- REQUIRED
 
-    vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-    vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+    vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = '[h]arpoon [a]dd' })
+    vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = '[h]arpoon [e]dit' })
     -- vim.keymap.set("n", "<A-e>", function()
     --   toggle_telescope(harpoon:list())
     -- end,

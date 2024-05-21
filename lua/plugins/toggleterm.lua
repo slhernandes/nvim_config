@@ -21,7 +21,7 @@ return {
         if term.direction == "horizontal" then
           return height/4
         elseif term.direction == "vertical" then
-          return width/3
+          return 2*width/5
         end
       end,
       open_mapping = '<M-t>',

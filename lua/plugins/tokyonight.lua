@@ -78,6 +78,6 @@ return {
           fg = c.bg_dark,
         }end,
       })
-      vim.cmd[[colorscheme tokyonight]]
+      --vim.cmd[[colorscheme tokyonight]]
     end,
   }

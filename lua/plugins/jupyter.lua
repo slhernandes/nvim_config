@@ -39,7 +39,6 @@ return {
   {
     'quarto-dev/quarto-nvim',
     dependencies = {
-      'quarto-dev/quarto-nvim',
       'jmbuhr/otter.nvim',
       'hrsh7th/nvim-cmp',
       'neovim/nvim-lspconfig',
@@ -61,17 +60,10 @@ return {
             enabled = true,
           },
         },
-        keymap = {
-          -- NOTE: setup your own keymaps:
-          hover = "K",
-          definition = "gd",
-          rename = "<leader>vrn",
-          references = "<leader>vrr",
-          format = "<leader>fc",
-        },
         codeRunner = {
           enabled = true,
           default_method = "molten",
+          ft_runners = { python = "molten" }, -- filetype to runner, ie. `{ python = "molten" }`.
         },
       })
       local runner = require("quarto.runner")
@@ -85,12 +77,15 @@ return {
       end, { desc = "run all cells of all languages", silent = true })
     end
   },
-  {
-    'goerz/jupytext.vim',
-    config = function ()
-      vim.g.jupytext_enable = 1
-      vim.g.jupytext_command = 'jupytext'
-      vim.g.jupytext_fmt = 'md'
-    end
+  { -- directly open ipynb files as quarto docuements
+    -- and convert back behind the scenes
+    'GCBallesteros/jupytext.nvim',
+    config = function()
+      require("jupytext").setup({
+        style = "markdown",
+        output_extension = "md",
+        force_ft = "markdown",
+      })
+    end,
   }
 }

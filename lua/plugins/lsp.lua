@@ -128,6 +128,11 @@ return {
           on_attach = lsp_attach,
         })
 
+        lspconfig.texlab.setup({
+          capabilities = capabilities,
+          on_attach = lsp_attach,
+        })
+
         lspconfig.rust_analyzer.setup({
           capabilities = capabilities,
           on_attach = lsp_attach,

@@ -1,6 +1,7 @@
 return {
   {
     "3rd/image.nvim",
+    ft= {"norg", "md", "py", "ipynb", "qmd", "jpeg", "jpg", "png"},
     -- luarocks config in neorg.lua
     dependencies = { "luarocks.nvim" },
     config = function()

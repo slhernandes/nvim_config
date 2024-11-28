@@ -30,19 +30,22 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    ft = "md",
+    ft = {"md", "norg"},
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function ()
       require'nvim-treesitter.configs'.setup {
+        highlight = {
+          enable = true,
+        },
         textobjects = {
           move = {
             enable = true,
             set_jumps = false, -- you can change this if you want.
             goto_next_start = {
-              ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
+              ["]c"] = { query = "@code_cell.inner", desc = "next code block" },
             },
             goto_previous_start = {
-              ["[b"] = { query = "@code_cell.inner", desc = "previous code block" },
+              ["[c"] = { query = "@code_cell.inner", desc = "previous code block" },
             },
           },
           select = {
@@ -58,8 +61,8 @@ return {
               --["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
               -- You can also use captures from other query groups like `locals.scm`
               --["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-              ["ib"] = { query = "@code_cell.inner", desc = "in block" },
-              ["ab"] = { query = "@code_cell.outer", desc = "around block" },
+              ["ic"] = { query = "@code_cell.inner", desc = "in block" },
+              ["ac"] = { query = "@code_cell.outer", desc = "around block" },
             },
             -- You can choose the select mode (default is charwise 'v')
             --

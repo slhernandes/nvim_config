@@ -5,16 +5,30 @@ return {
     {'williamboman/mason.nvim'},
     {'hrsh7th/nvim-cmp'},
     {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-calc'},
     {'L3MON4D3/LuaSnip'},
     {'onsails/lspkind.nvim'},
   },
   config = function()
+
+    for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+      local default_diagnostic_handler = vim.lsp.handlers[method]
+      vim.lsp.handlers[method] = function(err, result, context, config)
+        if err ~= nil and err.code == -32802 then
+          return
+        end
+        return default_diagnostic_handler(err, result, context, config)
+      end
+    end
+
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = {
         'lua_ls',
         'rust_analyzer',
         'clangd',
+        'pylsp',
+        'texlab',
       },
     })
 
@@ -95,6 +109,7 @@ return {
         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
         vim.diagnostic.config{ float={border=_border} }
         require('lspconfig.ui.windows').default_options = { border = _border }
+
         lspconfig.lua_ls.setup({
           capabilities = capabilities,
           on_attach = lsp_attach,
@@ -152,6 +167,11 @@ return {
               }
             }
           }
+        })
+
+        lspconfig.hyprls.setup({
+          capabilities = capabilities,
+          on_attach = lsp_attach,
         })
 
       end,

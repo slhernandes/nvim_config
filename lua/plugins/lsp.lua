@@ -169,6 +169,11 @@ return {
           }
         })
 
+        lspconfig.gopls.setup({
+          capabilities = capabilities,
+          on_attach = lsp_attach,
+        })
+
         lspconfig.hyprls.setup({
           capabilities = capabilities,
           on_attach = lsp_attach,

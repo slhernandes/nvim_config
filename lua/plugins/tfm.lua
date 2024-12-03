@@ -7,7 +7,7 @@ return {
         file_manager = "yazi",
         -- Replace netrw entirely
         -- Default: false
-        replace_netrw = false,
+        replace_netrw = true,
         -- Enable creation of commands
         -- Default: false
         -- Commands:

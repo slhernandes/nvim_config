@@ -1,3 +1,4 @@
+-- Remove the .bak extension to use this plugin
 return {
   'prichrd/netrw.nvim',
   config = function()

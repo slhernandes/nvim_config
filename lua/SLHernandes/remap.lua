@@ -38,10 +38,34 @@ vim.keymap.set("n", "<leader>cc", function() vim.cmd("cc") end)
 vim.keymap.set("n", "<leader>cn", function() vim.cmd("cn") end)
 vim.keymap.set("n", "<leader>cp", function() vim.cmd("cp") end)
 -- alt + [wasd] to resize to adjecent window 
-vim.keymap.set("n", "<M-H>", "<C-w>5<")
-vim.keymap.set("n", "<M-J>", "<C-w>-")
-vim.keymap.set("n", "<M-K>", "<C-w>+")
-vim.keymap.set("n", "<M-L>", "<C-w>5>")
+vim.keymap.set("n", "<M-H>", function ()
+  if vim.fn.winnr() == vim.fn.winnr("h") then
+    vim.cmd("wincmd 5<")
+  else
+    vim.cmd("wincmd 5>")
+  end
+end)
+vim.keymap.set("n", "<M-J>", function ()
+  if vim.fn.winnr() == vim.fn.winnr("j") then
+    vim.cmd("wincmd -")
+  else
+    vim.cmd("wincmd +")
+  end
+end)
+vim.keymap.set("n", "<M-K>", function ()
+  if vim.fn.winnr() == vim.fn.winnr("j") then
+    vim.cmd("wincmd +")
+  else
+    vim.cmd("wincmd -")
+  end
+end)
+vim.keymap.set("n", "<M-L>", function ()
+  if vim.fn.winnr() == vim.fn.winnr("h") then
+    vim.cmd("wincmd 5>")
+  else
+    vim.cmd("wincmd 5<")
+  end
+end)
 -- alt + [hjkl] to move to adjecent window 
 vim.keymap.set("n", "<M-h>", function ()
   if vim.fn.winnr() == vim.fn.winnr("h") then

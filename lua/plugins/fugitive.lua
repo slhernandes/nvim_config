@@ -4,7 +4,7 @@ return {
     vim.keymap.set("n", "<leader>gs", function () 
       vim.cmd.Git()
       vim.cmd("wincmd L")
-      vim.cmd("wincmd 45|")
+      vim.cmd("wincmd 75|")
     end)
   end,
 }

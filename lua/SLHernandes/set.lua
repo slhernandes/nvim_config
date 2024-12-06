@@ -37,3 +37,6 @@ vim.filetype.add({
     ned = 'ned'
   }
 })
+
+vim.opt.list = true
+vim.opt.lcs = "tab: 󰌒,trail:·,precedes:⋱"

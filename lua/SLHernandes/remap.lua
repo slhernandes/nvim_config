@@ -4,19 +4,16 @@ vim.g.maplocalleader = "\\"
 -- space p v as netrw hotkey
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- copy/paste to/from clipboard
-vim.keymap.set("n", "<leader>yy", "\"+y")
-vim.keymap.set("v", "<leader>yy", "\"+y")
-vim.keymap.set("n", "<leader>pp", "\"+p")
-vim.keymap.set("v", "<leader>pp", "\"+p")
+vim.keymap.set({"n", "v"}, "<leader>yy", "\"+y")
+vim.keymap.set({"n", "v"}, "<leader>pp", "\"+p")
 -- move line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- delete to null register
-vim.keymap.set("n", "<leader>d", "\"_d")
-vim.keymap.set("v", "<leader>d", "\"_d")
+vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
 -- change indentation 
-vim.keymap.set("v", "<leader><", "<Vgv")
-vim.keymap.set("v", "<leader>>", ">Vgv")
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>fc", function ()
   local ft = vim.bo.filetype
   if ft == "c" or ft == "cpp" then
@@ -39,10 +36,10 @@ vim.keymap.set("n", "<leader>cn", function() vim.cmd("cn") end)
 vim.keymap.set("n", "<leader>cp", function() vim.cmd("cp") end)
 -- alt + [wasd] to resize to adjecent window 
 vim.keymap.set("n", "<M-H>", function ()
-  if vim.fn.winnr() == vim.fn.winnr("h") then
-    vim.cmd("wincmd 5<")
-  else
+  if vim.fn.winnr() == vim.fn.winnr("l") then
     vim.cmd("wincmd 5>")
+  else
+    vim.cmd("wincmd 5<")
   end
 end)
 vim.keymap.set("n", "<M-J>", function ()
@@ -60,10 +57,10 @@ vim.keymap.set("n", "<M-K>", function ()
   end
 end)
 vim.keymap.set("n", "<M-L>", function ()
-  if vim.fn.winnr() == vim.fn.winnr("h") then
-    vim.cmd("wincmd 5>")
-  else
+  if vim.fn.winnr() == vim.fn.winnr("l") then
     vim.cmd("wincmd 5<")
+  else
+    vim.cmd("wincmd 5>")
   end
 end)
 -- alt + [hjkl] to move to adjecent window 

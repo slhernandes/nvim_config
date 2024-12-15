@@ -3,6 +3,7 @@ My (relatively) minimal neovim config with plugins installed with [lazy.nvim](ht
 ## Dependencies ##
 * [Neovim](https://github.com/neovim/neovim/releases/tag/v0.9.5)
 * [Ripgrep](https://github.com/BurntSushi/ripgrep)
+* [fd](https://github.com/sharkdp/fd)
 * [Nerdfont](https://github.com/ryanoasis/nerd-fonts)
 * [Yazi](https://github.com/sxyazi/yazi)
 * Any terminal emulator with image protocol support (e.g. [Kitty](https://github.com/kovidgoyal/kitty))

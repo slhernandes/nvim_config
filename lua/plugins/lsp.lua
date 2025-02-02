@@ -198,5 +198,10 @@ return {
       on_attach = lsp_attach,
     })
 
+    lspconfig.nil_ls.setup({
+      capabilities = capabilities,
+      on_attach = lsp_attach,
+    })
+
   end,
 }

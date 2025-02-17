@@ -1,5 +1,5 @@
 vim.api.nvim_exec2([[
-  autocmd BufNewFile 1*.cpp 0r ~/.config/nvim/templates/template.cpp
+  autocmd BufNewFile [0-9]*.cpp 0r ~/.config/nvim/templates/template.cpp
   ]],
   { output= false }
 )

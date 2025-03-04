@@ -41,6 +41,10 @@ return {
       on_highlights = function(hl, c) 
         local prompt = "#2d3149"
         local linenr_fg = "#737aa2"
+        local msg_fg = "#7aa2f7"
+        hl.MsgArea = {
+          fg = msg_fg,
+        }
         hl.LineNr = {
           fg = linenr_fg,
         }

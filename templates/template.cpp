@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define debug(x) std::cerr << "#x: " << x << std::endl;
+#define debug(x) std::cerr << #x << ": " << x << std::endl;
 
 using namespace std;
 

@@ -31,6 +31,7 @@ return {
             },
           },
           man_pages = {
+            sections = { "ALL" },
             mappings = {
               i = {
                 ["<CR>"] = function (prompt_bufnr) action_set.select(prompt_bufnr, "tab") end,

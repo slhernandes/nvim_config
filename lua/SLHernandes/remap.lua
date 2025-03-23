@@ -20,6 +20,12 @@ vim.keymap.set("n", "<leader>fc", function ()
     vim.cmd("%!clang-format")
   elseif ft == "rust" then
     vim.cmd("%!rustfmt")
+  elseif ft == "lua" then
+    vim.cmd("%!lua-format --indent-width=2")
+  elseif ft == "go" then
+    vim.cmd("%!gofmt")
+  elseif ft == "python" then
+    vim.cmd("%!yapf")
   end
 end)
 -- tab hotkeys

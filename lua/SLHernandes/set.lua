@@ -26,10 +26,12 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
+vim.opt.splitbelow = true
+
 --vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
-vim.g.colorizer_auto_filetype='css,html,conf'
+--vim.g.colorizer_auto_filetype='css,html,conf' -- for old colorizer
 vim.opt.conceallevel = 3
 
 vim.filetype.add({

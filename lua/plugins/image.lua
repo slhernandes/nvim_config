@@ -3,7 +3,7 @@ return {
     "3rd/image.nvim",
     ft= {"norg", "md", "py", "ipynb", "qmd", "jpeg", "jpg", "png"},
     -- luarocks config in neorg.lua
-    dependencies = { "luarocks.nvim" },
+    dependencies = {'leafo/magick', 'wahern/luaossl', 'lunarmodules/luasocket'},
     config = function()
 
       local function file_exists(name)

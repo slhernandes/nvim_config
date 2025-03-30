@@ -14,7 +14,7 @@ vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
 -- change indentation 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("n", "<leader>fc", function ()
+vim.keymap.set("n", "<leader>fc", function()
   local ft = vim.bo.filetype
   if ft == "c" or ft == "cpp" then
     vim.cmd("%!clang-format")
@@ -41,28 +41,28 @@ vim.keymap.set("n", "<leader>cc", function() vim.cmd("cc") end)
 vim.keymap.set("n", "<leader>cn", function() vim.cmd("cn") end)
 vim.keymap.set("n", "<leader>cp", function() vim.cmd("cp") end)
 -- alt + [wasd] to resize to adjecent window 
-vim.keymap.set("n", "<M-H>", function ()
+vim.keymap.set("n", "<M-H>", function()
   if vim.fn.winnr() == vim.fn.winnr("l") then
     vim.cmd("wincmd 5>")
   else
     vim.cmd("wincmd 5<")
   end
 end)
-vim.keymap.set("n", "<M-J>", function ()
+vim.keymap.set("n", "<M-J>", function()
   if vim.fn.winnr() == vim.fn.winnr("j") then
     vim.cmd("wincmd -")
   else
     vim.cmd("wincmd +")
   end
 end)
-vim.keymap.set("n", "<M-K>", function ()
+vim.keymap.set("n", "<M-K>", function()
   if vim.fn.winnr() == vim.fn.winnr("j") then
     vim.cmd("wincmd +")
   else
     vim.cmd("wincmd -")
   end
 end)
-vim.keymap.set("n", "<M-L>", function ()
+vim.keymap.set("n", "<M-L>", function()
   if vim.fn.winnr() == vim.fn.winnr("l") then
     vim.cmd("wincmd 5<")
   else
@@ -70,7 +70,7 @@ vim.keymap.set("n", "<M-L>", function ()
   end
 end)
 -- alt + [hjkl] to move to adjecent window 
-vim.keymap.set("n", "<M-h>", function ()
+vim.keymap.set("n", "<M-h>", function()
   if vim.fn.winnr() == vim.fn.winnr("h") then
     os.execute("tmux if -F '#{pane_at_left}' '' 'select-pane -L'")
   else
@@ -78,7 +78,7 @@ vim.keymap.set("n", "<M-h>", function ()
   end
 end)
 
-vim.keymap.set("n", "<M-j>", function ()
+vim.keymap.set("n", "<M-j>", function()
   if vim.fn.winnr() == vim.fn.winnr("j") then
     os.execute("tmux if -F '#{pane_at_bottom}' '' 'select-pane -D'")
   else
@@ -86,7 +86,7 @@ vim.keymap.set("n", "<M-j>", function ()
   end
 end)
 
-vim.keymap.set("n", "<M-k>", function ()
+vim.keymap.set("n", "<M-k>", function()
   if vim.fn.winnr() == vim.fn.winnr("k") then
     os.execute("tmux if -F '#{pane_at_top}' '' 'select-pane -U'")
   else
@@ -94,7 +94,7 @@ vim.keymap.set("n", "<M-k>", function ()
   end
 end)
 
-vim.keymap.set("n", "<M-l>", function ()
+vim.keymap.set("n", "<M-l>", function()
   if vim.fn.winnr() == vim.fn.winnr("l") then
     os.execute("tmux if -F '#{pane_at_right}' '' 'select-pane -R'")
   else

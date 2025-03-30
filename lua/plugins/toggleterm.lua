@@ -2,8 +2,8 @@ return {
   'akinsho/toggleterm.nvim',
   version = '*',
   config = function()
-    local dir_fn = function ()
-      local width  = vim.api.nvim_win_get_width(0)
+    local dir_fn = function()
+      local width = vim.api.nvim_win_get_width(0)
       local height = vim.api.nvim_win_get_height(0)
       local width_px = width * 10
       local height_px = height * 20
@@ -17,12 +17,12 @@ return {
       direction = dir_fn(),
       -- size can be a number or function which is passed the current terminal
       size = function(term)
-        local width  = vim.api.nvim_win_get_width(0)
+        local width = vim.api.nvim_win_get_width(0)
         local height = vim.api.nvim_win_get_height(0)
         if term.direction == "horizontal" then
-          return height/4
+          return height / 4
         elseif term.direction == "vertical" then
-          return 2*width/5
+          return 2 * width / 5
         end
       end,
       open_mapping = nil, -- no default open mapping
@@ -37,25 +37,25 @@ return {
       close_on_exit = true, -- close the terminal window when the process exits
       -- Change the default shell. Can be a string or a function returning a string
       shell = vim.o.shell,
-      auto_scroll = true, -- automatically scroll to the bottom on terminal output
+      auto_scroll = true -- automatically scroll to the bottom on terminal output
       -- This field is only relevant if direction is set to 'float'
     })
 
     -- dynamic window size and direction mapping
-    vim.keymap.set({"n", "i"}, "<M-t>", function ()
-      local width  = vim.api.nvim_win_get_width(0)
+    vim.keymap.set({"n", "i"}, "<M-t>", function()
+      local width = vim.api.nvim_win_get_width(0)
       local height = vim.api.nvim_win_get_height(0)
       local direction = dir_fn()
       local size = 0.0
       if direction == "horizontal" then
-        size = height/4
+        size = height / 4
       elseif direction == "vertical" then
-        size = 2*width/5
+        size = 2 * width / 5
       end
-    vim.cmd("ToggleTerm direction=" .. direction .. " size=" .. tostring(size))
-    --print(width, height)
-    --print("ToggleTerm direction=" .. direction .. " size=" .. tostring(size))
+      vim.cmd("ToggleTerm direction=" .. direction .. " size=" .. tostring(size))
+      -- print(width, height)
+      -- print("ToggleTerm direction=" .. direction .. " size=" .. tostring(size))
     end)
     vim.keymap.set("t", "<M-t>", "<Cmd>ToggleTerm<CR>")
-  end,
+  end
 }

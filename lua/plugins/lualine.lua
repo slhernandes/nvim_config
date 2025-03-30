@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
+  dependencies = {'kyazdani42/nvim-web-devicons', opt = true},
   config = function()
 
     local icons = require("nvim-nonicons")
@@ -16,29 +16,17 @@ return {
         --    section_separators = { left = '', right = ''},
         -- component_separators = { left = '/', right = '/'},
         -- section_separators = { left = '', right = ''},
-        component_separators = { left = '|', right = '|'},
-        section_separators = { left = '', right = ''},
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {},
-        },
+        component_separators = {left = '|', right = '|'},
+        section_separators = {left = '', right = ''},
+        disabled_filetypes = {statusline = {}, winbar = {}},
         ignore_focus = {},
         always_divide_middle = true,
         globalstatus = false,
-        refresh = {
-          statusline = 100,
-          tabline = 100,
-          winbar = 100,
-        }
+        refresh = {statusline = 100, tabline = 100, winbar = 100}
       },
       sections = {
-        lualine_a = { nonicons_extention.mode },
-        lualine_b = {
-          {
-            "branch",
-            icon = icons.get("git-branch"),
-          },
-          'diff'},
+        lualine_a = {nonicons_extention.mode},
+        lualine_b = {{"branch", icon = icons.get("git-branch")}, 'diff'},
         lualine_c = {'buffers'},
         lualine_x = {'diagnostics'},
         lualine_y = {'filetype'},
@@ -57,5 +45,5 @@ return {
       inactive_winbar = {},
       extensions = {}
     }
-  end,
+  end
 }

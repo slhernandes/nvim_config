@@ -11,7 +11,6 @@ return {
         load = {
           ['core.defaults'] = {},
           ['core.concealer'] = {},
-          ['core.presenter'] = {},
           ['core.ui.calendar'] = {},
           ['core.dirman'] = {config = {workspaces = {uni = '~/notes/uni'}}}
         }

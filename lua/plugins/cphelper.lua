@@ -3,7 +3,11 @@ return {
   lazy = true,
   ft = "cpp",
   keys = {
-    { "<leader>cr", "<cmd>CompetiTest receive contest<cr>", desc = "Retrieve contest" },
+    {
+      "<leader>cr",
+      "<cmd>CompetiTest receive contest<cr>",
+      desc = "Retrieve contest"
+    }
   },
   dependencies = 'MunifTanjim/nui.nvim',
   config = function()
@@ -16,11 +20,11 @@ return {
         width = 0.2,
         height = 0.3,
         mappings = {
-          focus_next = { "j", "<down>", "<Tab>" },
-          focus_prev = { "k", "<up>", "<S-Tab>" },
-          close = { "<esc>", "<C-c>", "q", "Q" },
-          submit = { "<cr>" },
-        },
+          focus_next = {"j", "<down>", "<Tab>"},
+          focus_prev = {"k", "<up>", "<S-Tab>"},
+          close = {"<esc>", "<C-c>", "q", "Q"},
+          submit = {"<cr>"}
+        }
       },
       editor_ui = {
         popup_width = 0.4,
@@ -28,15 +32,15 @@ return {
         show_nu = true,
         show_rnu = false,
         normal_mode_mappings = {
-          switch_window = { "<C-h>", "<C-l>", "<C-i>" },
+          switch_window = {"<C-h>", "<C-l>", "<C-i>"},
           save_and_close = "<C-s>",
-          cancel = { "q", "Q" },
+          cancel = {"q", "Q"}
         },
         insert_mode_mappings = {
-          switch_window = { "<C-h>", "<C-l>", "<C-i>" },
+          switch_window = {"<C-h>", "<C-l>", "<C-i>"},
           save_and_close = "<C-s>",
-          cancel = "<C-q>",
-        },
+          cancel = "<C-q>"
+        }
       },
       runner_ui = {
         interface = "popup",
@@ -49,63 +53,57 @@ return {
           run_all_again = "<C-r>",
           kill = "K",
           kill_all = "<C-k>",
-          view_input = { "i", "I" },
-          view_output = { "a", "A" },
-          view_stdout = { "o", "O" },
-          view_stderr = { "e", "E" },
-          toggle_diff = { "d", "D" },
-          close = { "q", "Q" },
+          view_input = {"i", "I"},
+          view_output = {"a", "A"},
+          view_stdout = {"o", "O"},
+          view_stderr = {"e", "E"},
+          toggle_diff = {"d", "D"},
+          close = {"q", "Q"}
         },
         viewer = {
           width = 0.5,
           height = 0.5,
           show_nu = true,
           show_rnu = false,
-          close_mappings = { "q", "Q" },
-        },
+          close_mappings = {"q", "Q"}
+        }
       },
       popup_ui = {
         total_width = 0.8,
         total_height = 0.8,
         layout = {
-          { 4, "tc" },
-          { 5, { { 1, "si" }, { 1, "so" } } },
-          { 5, { { 1, "se" }, { 1, "eo" } } },
-        },
+          {4, "tc"}, {5, {{1, "si"}, {1, "so"}}}, {5, {{1, "se"}, {1, "eo"}}}
+        }
       },
       split_ui = {
         position = "right",
         relative_to_editor = true,
         total_width = 0.3,
         vertical_layout = {
-          { 1, "tc" },
-          { 1, { { 1, "so" }, { 1, "eo" } } },
-          { 1, { { 1, "si" }, { 1, "se" } } },
+          {1, "tc"}, {1, {{1, "so"}, {1, "eo"}}}, {1, {{1, "si"}, {1, "se"}}}
         },
         total_height = 0.4,
         horizontal_layout = {
-          { 2, "tc" },
-          { 3, { { 1, "so" }, { 1, "si" } } },
-          { 3, { { 1, "eo" }, { 1, "se" } } },
-        },
+          {2, "tc"}, {3, {{1, "so"}, {1, "si"}}}, {3, {{1, "eo"}, {1, "se"}}}
+        }
       },
 
       save_current_file = true,
       save_all_files = false,
       compile_directory = ".",
       compile_command = {
-        c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
-        cpp = { exec = "g++", args = { "$(FNAME)" } },
-        rust = { exec = "rustc", args = { "$(FNAME)" } },
-        java = { exec = "javac", args = { "$(FNAME)" } },
+        c = {exec = "gcc", args = {"-Wall", "$(FNAME)", "-o", "$(FNOEXT)"}},
+        cpp = {exec = "g++", args = {"$(FNAME)"}},
+        rust = {exec = "rustc", args = {"$(FNAME)"}},
+        java = {exec = "javac", args = {"$(FNAME)"}}
       },
       running_directory = ".",
       run_command = {
-        c = { exec = "./$(FNOEXT)" },
-        cpp = { exec = "./a.out" },
-        rust = { exec = "./$(FNOEXT)" },
-        python = { exec = "python", args = { "$(FNAME)" } },
-        java = { exec = "java", args = { "$(FNOEXT)" } },
+        c = {exec = "./$(FNOEXT)"},
+        cpp = {exec = "./a.out"},
+        rust = {exec = "./$(FNOEXT)"},
+        python = {exec = "python", args = {"$(FNAME)"}},
+        java = {exec = "java", args = {"$(FNOEXT)"}}
       },
       multiple_testing = -1,
       maximum_time = 5000,
@@ -121,9 +119,7 @@ return {
 
       companion_port = 27121,
       receive_print_message = true,
-      template_file = {
-        cpp = "~/.config/nvim/templates/template.cpp",
-      },
+      template_file = {cpp = "~/.config/nvim/templates/template.cpp"},
       evaluate_template_modifiers = false,
       date_format = "%c",
       received_files_extension = "cpp",
@@ -135,11 +131,11 @@ return {
       received_contests_prompt_extension = true,
       open_received_problems = true,
       open_received_contests = true,
-      replace_received_testcases = false,
+      replace_received_testcases = false
     })
     vim.keymap.set("n", "<leader>cr", ":CompetiTest receive contest<CR>")
     vim.keymap.set("n", "<leader>ct", ":CompetiTest run<CR>")
     vim.keymap.set("n", "<leader>ca", ":CompetiTest add_testcase<CR>")
     vim.keymap.set("n", "<leader>ce", ":CompetiTest edit_testcase<CR>")
-  end,
+  end
 }

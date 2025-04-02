@@ -26,6 +26,8 @@ vim.keymap.set("n", "<leader>fc", function()
     vim.cmd("%!gofmt")
   elseif ft == "python" then
     vim.cmd("%!yapf")
+  else
+    vim.cmd("norm gg=G")
   end
 end)
 -- tab hotkeys
@@ -40,7 +42,7 @@ vim.keymap.set("n", "<leader>bc", function() vim.cmd("bd") end)
 vim.keymap.set("n", "<leader>cc", function() vim.cmd("cc") end)
 vim.keymap.set("n", "<leader>cn", function() vim.cmd("cn") end)
 vim.keymap.set("n", "<leader>cp", function() vim.cmd("cp") end)
--- alt + [wasd] to resize to adjecent window 
+-- alt + [HJKL] to resize to adjecent window 
 vim.keymap.set("n", "<M-H>", function()
   if vim.fn.winnr() == vim.fn.winnr("l") then
     vim.cmd("wincmd 5>")

@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 #define debug(x) std::cerr << #x << ": " << x << std::endl;
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
 
 using namespace std;
 

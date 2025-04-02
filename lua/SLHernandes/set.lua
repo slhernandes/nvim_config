@@ -1,7 +1,7 @@
 vim.opt.guicursor = ""
 
 vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.opt.rnu = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -29,10 +29,6 @@ vim.opt.updatetime = 50
 
 vim.opt.splitbelow = true
 
--- vim.opt.colorcolumn = "80"
-
-vim.g.mapleader = " "
--- vim.g.colorizer_auto_filetype='css,html,conf' -- for old colorizer
 vim.opt.conceallevel = 3
 
 vim.filetype.add({extension = {ned = 'ned'}})

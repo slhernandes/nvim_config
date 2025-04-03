@@ -14,7 +14,7 @@ vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
 -- change indentation 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("n", "<leader>fc", function()
+--[[vim.keymap.set("n", "<leader>fc", function()
   local ft = vim.bo.filetype
   if ft == "c" or ft == "cpp" then
     vim.cmd("%!clang-format")
@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>fc", function()
   else
     vim.cmd("norm gg=G")
   end
-end)
+end)]]--
 -- tab hotkeys
 vim.keymap.set("n", "<leader>tn", function() vim.cmd("tabn") end)
 vim.keymap.set("n", "<leader>tp", function() vim.cmd("tabp") end)

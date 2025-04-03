@@ -6,7 +6,6 @@ return {
     {'L3MON4D3/LuaSnip'}, {'onsails/lspkind.nvim'}, {'saadparwaiz1/cmp_luasnip'}
   },
   config = function()
-
     for _, method in ipairs({'textDocument/diagnostic', 'workspace/diagnostic'}) do
       local default_diagnostic_handler = vim.lsp.handlers[method]
       vim.lsp.handlers[method] = function(err, result, context, config)
@@ -87,14 +86,6 @@ return {
       }
     })
 
-    -- `/` cmdline setup.
-    -- cmp.setup.cmdline('/', {
-    --   mapping = cmp.mapping.preset.cmdline(),
-    --   sources = {
-    --     { name = 'buffer' }
-    --   }
-    -- })
-
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_attach = function(_, bufnr)
       local opts = {buffer = bufnr, remap = false}
@@ -123,11 +114,56 @@ return {
       end, opts)
     end
 
-    local lspconfig = require('lspconfig')
+    local function mark_wrap(f)
+      return function()
+        vim.cmd("mark x")
+        f()
+        vim.cmd("norm g'x")
+      end
+    end
+    local use_default = {
+      lua_ls = {
+        enabled = false,
+        format = mark_wrap(function()
+          vim.cmd("silent exec \"%!lua-format --indent-width=2\"")
+        end)
+      }
+    }
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('my.lsp', {}),
+      callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        if not client:supports_method('textDocument/willSaveWaitUntil') and
+            client:supports_method('textDocument/formatting') then
+          local is_enabled = use_default[client.name] or {enabled = true}
+          if is_enabled.enabled then
+            vim.keymap.set({"n", "v"}, "<leader>fc",
+                           mark_wrap(function() vim.lsp.buf.format() end))
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = vim.api.nvim_create_augroup('my.lsp', {clear = false}),
+              buffer = args.buf,
+              callback = function()
+                vim.lsp.buf.format({
+                  bufnr = args.buf,
+                  id = client.id,
+                  timeout_ms = 1000
+                })
+              end
+            })
+          else
+            vim.keymap.set({"n", "v"}, "<leader>fc",
+                           use_default[client.name].format)
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = vim.api
+                  .nvim_create_augroup(client.name .. 'formatter', {}),
+              callback = use_default[client.name].format
+            })
+          end
+        end
+      end
+    })
 
-    -- local _border = "single"
-    -- vim.diagnostic.config {float = {border = cmp.config.window.bordered()}}
-    -- require('lspconfig.ui.windows').default_options = {border = cmp.config.window.bordered()}
+    local lspconfig = require('lspconfig')
 
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
@@ -179,6 +215,5 @@ return {
 
     lspconfig.hyprls
         .setup({capabilities = capabilities, on_attach = lsp_attach})
-
   end
 }

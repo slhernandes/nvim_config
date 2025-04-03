@@ -55,6 +55,6 @@ return {
         hl.TelescopeResultsTitle = {bg = c.bg_dark, fg = c.bg_dark}
       end
     })
-    vim.cmd [[colorscheme tokyonight]]
+    vim.cmd("colorscheme tokyonight")
   end
 }

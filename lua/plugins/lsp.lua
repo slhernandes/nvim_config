@@ -3,7 +3,8 @@ return {
   dependencies = {
     {'neovim/nvim-lspconfig'}, {'williamboman/mason.nvim'},
     {'hrsh7th/nvim-cmp'}, {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-calc'},
-    {'L3MON4D3/LuaSnip'}, {'onsails/lspkind.nvim'}, {'saadparwaiz1/cmp_luasnip'}
+    {'L3MON4D3/LuaSnip'}, {'onsails/lspkind.nvim'},
+    {'saadparwaiz1/cmp_luasnip'}, {'hrsh7th/cmp-omni'}
   },
   config = function()
     for _, method in ipairs({'textDocument/diagnostic', 'workspace/diagnostic'}) do
@@ -69,17 +70,21 @@ return {
       sources = cmp.config.sources({
         {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = 'otter'},
         {name = 'buffer'}, {name = 'path'}, {name = 'treesitter'},
-        {name = 'calc'}
+        {name = 'calc'},
+        {
+          name = 'omni',
+          option = {disable_omnifuncs = {'v:lua.vim.lsp.omnifunc'}}
+        }
       }, {{name = 'buffer'}}),
       formatting = {
-        fields = {'kind', 'abbr'},
+        fields = {'kind', 'abbr', 'menu'},
         format = lspkind.cmp_format({
           mode = 'symbol', -- show only symbol annotations
-          maxwidth = 20, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          maxwidth = 25, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
           ellipsis_char = '…', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-          show_labelDetails = false, -- show labelDetails in menu. Disabled by default
+          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
           before = function(_, vim_item)
-            vim_item.menu = ""
+            if vim.bo.filetype ~= "ocaml" then vim_item.menu = "" end
             return vim_item
           end
         })
@@ -116,21 +121,95 @@ return {
 
     local function mark_wrap(f)
       return function()
-        vim.cmd("mark x")
+        local cur_line = vim.api.nvim_exec2("echo line(\".\")", {output = true})
+                             .output or "1"
+        local cur_col = vim.api.nvim_exec2("echo col(\".\")", {output = true})
+                            .output or "0"
         f()
-        vim.cmd("norm g'x")
+        local lc = vim.api.nvim_buf_line_count(0)
+        local cur_line_num = tonumber(cur_line) or 1
+        if lc >= cur_line_num then
+          vim.cmd("call setcursorcharpos(" .. cur_line .. ", " .. cur_col .. ")")
+        else
+          vim.cmd("norm G")
+        end
       end
     end
     local use_default = {
       lua_ls = {
         enabled = false,
+        filetype = "lua",
         format = mark_wrap(function()
-          vim.cmd("silent exec \"%!lua-format --indent-width=2\"")
+          vim.cmd([[silent exec "%!lua-format --indent-width=2"]])
+        end)
+      },
+      ocaml_lsp = {
+        enabled = false,
+        filetype = "ocaml",
+        format = mark_wrap(function()
+          local format_cmd = "%!ocamlformat -"
+          format_cmd = format_cmd .. " --enable-outside-detected-project"
+          format_cmd = format_cmd .. " -p janestreet"
+          format_cmd = format_cmd .. " --if-then-else=fit-or-vertical"
+          format_cmd = format_cmd .. " -m 80"
+          format_cmd = format_cmd .. " --impl"
+          vim.cmd(string.format([[
+            silent exec "%s"
+          ]], format_cmd))
+        end)
+      },
+      bashls = {
+        enabled = false,
+        filetype = {"bash", "sh", "zsh"},
+        format = mark_wrap(function()
+          vim.cmd([[silent exec "%!beautysh -i 2 -"]])
         end)
       }
     }
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      desc = "Autoformatting for buffer without LSP",
+      group = vim.api.nvim_create_augroup('autoformatter', {clear = false}),
+      callback = function(args)
+        local function check_ft(in_ft, data)
+          local ret = false
+          if type(data) == "table" then
+            for _, i in ipairs(data) do
+              if in_ft == i then
+                ret = true
+                break
+              end
+            end
+          elseif type(data) == "string" then
+            ret = in_ft == data
+          end
+          return ret
+        end
+        for _, v in pairs(use_default) do
+          if check_ft(vim.bo.filetype, v.filetype) and not v.enabled then
+            vim.keymap.set({"n", "v"}, "<leader>fc", v.format)
+            if (tonumber(vim.fn.system({'wc', '-l', vim.fn.expand('%')}):match(
+                             '%d+')) or 0) <= 1000 then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                group = vim.api.nvim_create_augroup(vim.bo.filetype ..
+                                                        'formatter', {}),
+                buffer = args.buf,
+                callback = function()
+                  v.format()
+                  if vim.v.shell_error > 0 then
+                    print("Error occured, undo.")
+                    vim.cmd [[undo]]
+                  end
+                end
+              })
+            end
+          end
+        end
+      end
+    })
+
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('my.lsp', {}),
+      group = vim.api.nvim_create_augroup('autoformatter', {clear = false}),
       callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         if not client:supports_method('textDocument/willSaveWaitUntil') and
@@ -139,25 +218,20 @@ return {
           if is_enabled.enabled then
             vim.keymap.set({"n", "v"}, "<leader>fc",
                            mark_wrap(function() vim.lsp.buf.format() end))
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              group = vim.api.nvim_create_augroup('my.lsp', {clear = false}),
-              buffer = args.buf,
-              callback = function()
-                vim.lsp.buf.format({
-                  bufnr = args.buf,
-                  id = client.id,
-                  timeout_ms = 1000
-                })
-              end
-            })
-          else
-            vim.keymap.set({"n", "v"}, "<leader>fc",
-                           use_default[client.name].format)
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              group = vim.api
-                  .nvim_create_augroup(client.name .. 'formatter', {}),
-              callback = use_default[client.name].format
-            })
+            if (tonumber(vim.fn.system({'wc', '-l', vim.fn.expand('%')}):match(
+                             '%d+')) or 0) <= 1000 then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                group = vim.api.nvim_create_augroup('my.lsp', {clear = false}),
+                buffer = args.buf,
+                callback = function()
+                  vim.lsp.buf.format({
+                    bufnr = args.buf,
+                    id = client.id,
+                    timeout_ms = 1000
+                  })
+                end
+              })
+            end
           end
         end
       end

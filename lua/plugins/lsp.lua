@@ -37,10 +37,110 @@ return {
       ]], {err = i(1, "err")}, {repeat_duplicates = true}))
     })
 
+    local types = {"usize", "i64", "i32"};
+    for _, value in ipairs(types) do
+      ls.add_snippets("rust", {
+        s("read" .. value, fmt(string.format([[
+        {buf}.clear();
+        stdin.read_line(&mut {buf})?;
+        let {n} = buf.trim().parse::<%s>().unwrap();
+        ]], value), {buf = i(1, "buf"), n = i(2, "n")},
+                               {repeat_duplicates = true}))
+      })
+      ls.add_snippets("rust", {
+        s("read" .. value .. "vec", fmt(string.format([[
+        {buf}.clear();
+        stdin.read_line(&mut {buf})?;
+        let {n} = buf.trim().split(' ').map(|x| x.trim().parse::<%s>().unwrap()).collect::<Vec<_>>();
+        ]], value), {buf = i(1, "buf"), n = i(2, "n")},
+                                        {repeat_duplicates = true}))
+      })
+    end
+
+    -- Add LSP server here.
+    local servers = {
+      tinymist = {},
+      clangd = {},
+      texlab = {},
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              jedi_completion = {
+                include_class_objects = true,
+                include_function_objects = true,
+                eager = true
+              }
+            }
+          }
+        }
+      },
+      gopls = {},
+      hyprls = {},
+      rust_analyzer = {
+        settings = {diagnostics = {disabled = {"unlinked-file"}}}
+      },
+      lua_ls = {
+        on_init = function(client)
+          if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if vim.uv.fs_stat(path .. '/.luarc.json') or
+                vim.uv.fs_stat(path .. '/.luarc.jsonc') then return end
+          end
+
+          client.config.settings.Lua = vim.tbl_deep_extend('force',
+                                                           client.config
+                                                               .settings.Lua, {
+            runtime = {version = 'LuaJIT'},
+            workspace = {
+              checkThirdParty = false,
+              library = {vim.env.VIMRUNTIME}
+            }
+          })
+        end,
+        settings = {Lua = {}}
+      }
+    }
+
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local lsp_attach = function(_, bufnr)
+      local opts = {buffer = bufnr, remap = false}
+
+      vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+      vim.keymap.set("n", "K",
+                     function() vim.lsp.buf.hover({border = "rounded"}) end,
+                     opts)
+      vim.keymap.set("n", "<leader>vws",
+                     function() vim.lsp.buf.workspace_symbol() end, opts)
+      vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count = 1}) end,
+                     opts)
+      vim.keymap.set("n", "]d",
+                     function() vim.diagnostic.jump({count = -1}) end, opts)
+      vim.keymap.set("n", "<leader>vca",
+                     function() vim.lsp.buf.code_action() end, opts)
+      vim.keymap.set("n", "<leader>vrr",
+                     function() vim.lsp.buf.references() end, opts)
+      vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
+                     opts)
+      vim.keymap.set("i", "<C-h>", function()
+        vim.lsp.buf.signature_help({border = "rounded"})
+      end, opts)
+      vim.keymap.set("n", "<leader>vsh", function()
+        vim.lsp.buf.signature_help({border = "rounded"})
+      end, opts)
+    end
+
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = {
-        'lua_ls', 'rust_analyzer', 'clangd', 'pylsp', 'texlab'
+      ensure_installed = servers,
+      automatic_installation = false,
+      handlers = {
+        function(server_name)
+          local server = servers[server_name] or {}
+          server.capabilities = capabilities
+          server.on_attach = lsp_attach
+          require("lspconfig")[server_name].setup(server)
+        end
       }
     })
 
@@ -91,34 +191,6 @@ return {
       }
     })
 
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    local lsp_attach = function(_, bufnr)
-      local opts = {buffer = bufnr, remap = false}
-
-      vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-      vim.keymap.set("n", "K",
-                     function() vim.lsp.buf.hover({border = "rounded"}) end,
-                     opts)
-      vim.keymap.set("n", "<leader>vws",
-                     function() vim.lsp.buf.workspace_symbol() end, opts)
-      vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count = 1}) end,
-                     opts)
-      vim.keymap.set("n", "]d",
-                     function() vim.diagnostic.jump({count = -1}) end, opts)
-      vim.keymap.set("n", "<leader>vca",
-                     function() vim.lsp.buf.code_action() end, opts)
-      vim.keymap.set("n", "<leader>vrr",
-                     function() vim.lsp.buf.references() end, opts)
-      vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
-                     opts)
-      vim.keymap.set("i", "<C-h>", function()
-        vim.lsp.buf.signature_help({border = "rounded"})
-      end, opts)
-      vim.keymap.set("n", "<leader>vsh", function()
-        vim.lsp.buf.signature_help({border = "rounded"})
-      end, opts)
-    end
-
     local function mark_wrap(f)
       return function()
         local cur_line = vim.api.nvim_exec2("echo line(\".\")", {output = true})
@@ -135,6 +207,7 @@ return {
         end
       end
     end
+
     local use_default = {
       lua_ls = {
         enabled = false,
@@ -237,57 +310,5 @@ return {
       end
     })
 
-    local lspconfig = require('lspconfig')
-
-    lspconfig.lua_ls.setup({
-      capabilities = capabilities,
-      on_attach = lsp_attach,
-      on_init = function(client)
-        if client.workspace_folders then
-          local path = client.workspace_folders[1].name
-          if vim.uv.fs_stat(path .. '/.luarc.json') or
-              vim.uv.fs_stat(path .. '/.luarc.jsonc') then return end
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config
-                                                             .settings.Lua, {
-          runtime = {version = 'LuaJIT'},
-          workspace = {checkThirdParty = false, library = {vim.env.VIMRUNTIME}}
-        })
-      end,
-      settings = {Lua = {}}
-    })
-
-    lspconfig.clangd
-        .setup({capabilities = capabilities, on_attach = lsp_attach})
-
-    lspconfig.texlab
-        .setup({capabilities = capabilities, on_attach = lsp_attach})
-
-    lspconfig.rust_analyzer.setup({
-      capabilities = capabilities,
-      on_attach = lsp_attach
-    })
-
-    lspconfig.pylsp.setup({
-      capabilities = capabilities,
-      on_attach = lsp_attach,
-      settings = {
-        pylsp = {
-          plugins = {
-            jedi_completion = {
-              include_class_objects = true,
-              include_function_objects = true,
-              eager = true
-            }
-          }
-        }
-      }
-    })
-
-    lspconfig.gopls.setup({capabilities = capabilities, on_attach = lsp_attach})
-
-    lspconfig.hyprls
-        .setup({capabilities = capabilities, on_attach = lsp_attach})
   end
 }

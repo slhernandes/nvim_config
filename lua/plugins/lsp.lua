@@ -244,6 +244,7 @@ return {
       desc = "Autoformatting for buffer without LSP",
       group = vim.api.nvim_create_augroup('autoformatter', {clear = false}),
       callback = function(args)
+
         local function check_ft(in_ft, data)
           local ret = false
           if type(data) == "table" then
@@ -258,6 +259,7 @@ return {
           end
           return ret
         end
+
         for _, v in pairs(use_default) do
           if check_ft(vim.bo.filetype, v.filetype) and not v.enabled then
             vim.keymap.set({"n", "v"}, "<leader>fc", v.format)

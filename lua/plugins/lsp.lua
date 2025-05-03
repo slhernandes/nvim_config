@@ -59,6 +59,7 @@ return {
 
     -- Add LSP server here.
     local servers = {
+      zls = {},
       tinymist = {},
       clangd = {},
       texlab = {},

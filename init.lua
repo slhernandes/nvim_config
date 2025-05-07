@@ -13,6 +13,9 @@ require("lazy").setup("plugins", {
   dev = {path = "~/Dokumente/srcs/nvim-projects", fallback = true}
 })
 
+-- vim.cmd("colorscheme tokyonight")
+vim.cmd.colorscheme("gruber-darker")
+
 -- Merlin setup ocaml
 vim.cmd([[
 if executable('opam')

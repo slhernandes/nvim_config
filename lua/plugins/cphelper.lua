@@ -60,13 +60,7 @@ return {
           toggle_diff = {"d", "D"},
           close = {"q", "Q"}
         },
-        viewer = {
-          width = 0.5,
-          height = 0.5,
-          show_nu = true,
-          show_rnu = false,
-          close_mappings = {"q", "Q"}
-        }
+        viewer = {width = 0.5, height = 0.5, show_nu = true, show_rnu = false}
       },
       popup_ui = {
         total_width = 0.8,

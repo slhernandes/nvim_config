@@ -1,67 +1,20 @@
 return {
-  'neovim/nvim-lspconfig',
+  'mason-org/mason.nvim',
   dependencies = {
-    {'mason-org/mason.nvim'}, {'hrsh7th/nvim-cmp'}, {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/cmp-calc'}, {'L3MON4D3/LuaSnip'}, {'onsails/lspkind.nvim'},
-    {'saadparwaiz1/cmp_luasnip'}, {'hrsh7th/cmp-omni'}
+    'hrsh7th/cmp-nvim-lsp', 'neovim/nvim-lspconfig', 'hrsh7th/nvim-cmp'
   },
   config = function()
-    for _, method in ipairs({'textDocument/diagnostic', 'workspace/diagnostic'}) do
-      local default_diagnostic_handler = vim.lsp.handlers[method]
-      vim.lsp.handlers[method] = function(err, result, context, config)
-        if err ~= nil and err.code == -32802 then return end
-        return default_diagnostic_handler(err, result, context, config)
-      end
-    end
-    local ls = require("luasnip")
-    local s = ls.snippet
-    local i = ls.insert_node
-    local fmt = require("luasnip.extras.fmt").fmt
-
-    vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-    vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump(1) end,
-                   {silent = true})
-    vim.keymap.set({"i", "s"}, "<C-H>", function() ls.jump(-1) end,
-                   {silent = true})
-
-    vim.keymap.set({"i", "s"}, "<C-E>", function()
-      if ls.choice_active() then ls.change_choice(1) end
-    end, {silent = true})
-
-    ls.add_snippets("go", {
-      s("iferr", fmt([[
-      if {err} != nil {{
-        return {err}
-      }}
-      ]], {err = i(1, "err")}, {repeat_duplicates = true}))
-    })
-
-    local types = {"usize", "i64", "i32"};
-    for _, value in ipairs(types) do
-      ls.add_snippets("rust", {
-        s("read" .. value, fmt(string.format([[
-        {buf}.clear();
-        stdin.read_line(&mut {buf})?;
-        let {n} = buf.trim().parse::<%s>().unwrap();
-        ]], value), {buf = i(1, "buf"), n = i(2, "n")},
-                               {repeat_duplicates = true}))
-      })
-      ls.add_snippets("rust", {
-        s("read" .. value .. "vec", fmt(string.format([[
-        {buf}.clear();
-        stdin.read_line(&mut {buf})?;
-        let {n} = buf.trim().split(' ').map(|x| x.trim().parse::<%s>().unwrap()).collect::<Vec<_>>();
-        ]], value), {buf = i(1, "buf"), n = i(2, "n")},
-                                        {repeat_duplicates = true}))
-      })
-    end
-
-    -- Add LSP server here.
+    require("mason").setup({ui = {border = "rounded"}})
     local servers = {
       zls = {},
       tinymist = {},
       clangd = {},
       texlab = {},
+      gopls = {},
+      hyprls = {},
+      rust_analyzer = {
+        settings = {diagnostics = {disabled = {"unlinked-file"}}}
+      },
       pylsp = {
         settings = {
           pylsp = {
@@ -74,11 +27,6 @@ return {
             }
           }
         }
-      },
-      gopls = {},
-      hyprls = {},
-      rust_analyzer = {
-        settings = {diagnostics = {disabled = {"unlinked-file"}}}
       },
       lua_ls = {
         on_init = function(client)
@@ -105,8 +53,15 @@ return {
         }
       }
     }
+    for _, method in ipairs({'textDocument/diagnostic', 'workspace/diagnostic'}) do
+      local default_diagnostic_handler = vim.lsp.handlers[method]
+      vim.lsp.handlers[method] = function(err, result, context, config)
+        if err ~= nil and err.code == -32802 then return end
+        return default_diagnostic_handler(err, result, context, config)
+      end
+    end
 
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local lsp_attach = function(_, bufnr)
       local opts = {buffer = bufnr, remap = false}
 
@@ -133,58 +88,12 @@ return {
         vim.lsp.buf.signature_help({border = "rounded"})
       end, opts)
     end
-    require('mason').setup({ui = {border = "rounded"}})
-
-    vim.o.pumheight = 15
-    local cmp = require('cmp')
-    local lspkind = require('lspkind')
-    cmp.setup({
-      snippet = {
-        expand = function(args) require('luasnip').lsp_expand(args.body) end
-      },
-      window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered()
-      },
-      mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-p>'] = cmp.mapping.select_prev_item({
-          behavior = cmp.SelectBehavior.Select
-        }),
-        ['<C-n>'] = cmp.mapping.select_next_item({
-          behavior = cmp.SelectBehavior.Select
-        }),
-        ['<C-y>'] = cmp.mapping.confirm({select = true}),
-        ['<C-Space>'] = cmp.mapping.complete()
-      }),
-      sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = 'otter'},
-        {name = 'buffer'}, {name = 'path'}, {name = 'treesitter'},
-        {name = 'calc'},
-        {
-          name = 'omni',
-          option = {disable_omnifuncs = {'v:lua.vim.lsp.omnifunc'}}
-        }
-      }, {{name = 'buffer'}}),
-      formatting = {
-        fields = {'kind', 'abbr', 'menu'},
-        format = lspkind.cmp_format({
-          mode = 'symbol', -- show only symbol annotations
-          maxwidth = 25, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-          ellipsis_char = '…', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-          before = function(_, vim_item)
-            if vim.bo.filetype ~= "ocaml" then vim_item.menu = "" end
-            return vim_item
-          end
-        })
-      }
-    })
     for server_name, server in pairs(servers) do
       server.capabilities = capabilities
       server.on_attach = lsp_attach
-      require("lspconfig")[server_name].setup(server)
+      server.root_markers = {".git"}
+      vim.lsp.enable(server_name)
+      vim.lsp.config(server_name, server)
     end
   end
 }

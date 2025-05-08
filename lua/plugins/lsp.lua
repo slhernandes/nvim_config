@@ -1,7 +1,7 @@
 return {
   'mason-org/mason.nvim',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp', 'neovim/nvim-lspconfig', 'hrsh7th/nvim-cmp'
+    'neovim/nvim-lspconfig', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/nvim-cmp'
   },
   config = function()
     require("mason").setup({ui = {border = "rounded"}})

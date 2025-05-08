@@ -10,11 +10,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
-  dev = {path = "~/Dokumente/srcs/nvim-projects", fallback = true}
+  dev = {path = "~/Dokumente/srcs/nvim-projects", fallback = true},
+  ui = {border = "rounded"}
 })
 
--- vim.cmd("colorscheme tokyonight")
-vim.cmd.colorscheme("gruber-darker")
+vim.cmd("colorscheme tokyonight")
+-- vim.cmd.colorscheme("gruber-darker")
 
 -- Merlin setup ocaml
 vim.cmd([[

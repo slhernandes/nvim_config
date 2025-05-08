@@ -1,9 +1,8 @@
 return {
-  'williamboman/mason-lspconfig.nvim',
+  'neovim/nvim-lspconfig',
   dependencies = {
-    {'neovim/nvim-lspconfig'}, {'williamboman/mason.nvim'},
-    {'hrsh7th/nvim-cmp'}, {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-calc'},
-    {'L3MON4D3/LuaSnip'}, {'onsails/lspkind.nvim'},
+    {'mason-org/mason.nvim'}, {'hrsh7th/nvim-cmp'}, {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-calc'}, {'L3MON4D3/LuaSnip'}, {'onsails/lspkind.nvim'},
     {'saadparwaiz1/cmp_luasnip'}, {'hrsh7th/cmp-omni'}
   },
   config = function()
@@ -99,7 +98,11 @@ return {
             }
           })
         end,
-        settings = {Lua = {}}
+        settings = {
+          Lua = {
+            diagnostics = {globals = {'vim'}, disable = {'missing-fields'}}
+          }
+        }
       }
     }
 
@@ -130,20 +133,7 @@ return {
         vim.lsp.buf.signature_help({border = "rounded"})
       end, opts)
     end
-
-    require('mason').setup()
-    require('mason-lspconfig').setup({
-      ensure_installed = servers,
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = capabilities
-          server.on_attach = lsp_attach
-          require("lspconfig")[server_name].setup(server)
-        end
-      }
-    })
+    require('mason').setup({ui = {border = "rounded"}})
 
     vim.o.pumheight = 15
     local cmp = require('cmp')
@@ -191,5 +181,10 @@ return {
         })
       }
     })
+    for server_name, server in pairs(servers) do
+      server.capabilities = capabilities
+      server.on_attach = lsp_attach
+      require("lspconfig")[server_name].setup(server)
+    end
   end
 }

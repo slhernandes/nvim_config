@@ -21,6 +21,7 @@ return {
     }, {"<c-up>", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session"}
   },
   ---@type YaziConfig | {}
-  opts = {open_for_directories = true, keymaps = {show_help = "<f1>"}},
-  init = function() vim.g.loaded_netrwPlugin = 1 end
+  opts = {open_for_directories = false, keymaps = {show_help = "<f1>"}}
+  -- if open_for_directories set to true
+  -- init = function() vim.g.loaded_netrwPlugin = 1 end
 }

@@ -1,8 +1,7 @@
 -- set mapleader as space
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
--- space p v as netrw hotkey
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- copy/paste to/from clipboard
 vim.keymap.set({"n", "v"}, "<leader>yy", "\"+y")
 vim.keymap.set({"n", "v"}, "<leader>pp", "\"+p")
@@ -29,7 +28,7 @@ vim.keymap.set("v", ">", ">gv")
   else
     vim.cmd("norm gg=G")
   end
-end)]]--
+end)]] --
 -- tab hotkeys
 vim.keymap.set("n", "<leader>tn", function() vim.cmd("tabn") end)
 vim.keymap.set("n", "<leader>tp", function() vim.cmd("tabp") end)

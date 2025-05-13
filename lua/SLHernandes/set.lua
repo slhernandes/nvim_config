@@ -10,6 +10,8 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
+vim.opt.cinoptions = "l1"
+
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false

@@ -4,6 +4,7 @@ return {
     -- ft = {"norg", "md", "py", "ipynb", "qmd", "jpeg", "jpg", "png"},
     -- luarocks config in neorg.lua
     dependencies = {'leafo/magick'},
+    lazy = true,
     config = function()
       -- default config
       require("image").setup({

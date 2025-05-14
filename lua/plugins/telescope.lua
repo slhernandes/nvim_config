@@ -2,6 +2,10 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     version = '^0.1.8',
+    keys = {
+      {"<leader>pf"}, {"<C-p>"}, {"<leader>ps"}, {"<leader>pl"}, {"<leader>ph"},
+      {"<leader>pm"}, {"<leader>pd"}
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},

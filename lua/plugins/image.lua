@@ -1,10 +1,9 @@
 return {
   {
     "3rd/image.nvim",
-    -- ft = {"norg", "md", "py", "ipynb", "qmd", "jpeg", "jpg", "png"},
+    ft = {"norg", "markdown", "python", "jpeg", "jpg", "png", "typst"},
     -- luarocks config in neorg.lua
     dependencies = {'leafo/magick'},
-    lazy = true,
     config = function()
       -- default config
       require("image").setup({
@@ -23,6 +22,13 @@ return {
             download_remote_images = true,
             only_render_image_at_cursor = true,
             filetypes = {"norg"}
+          },
+          typst = {
+            enabled = true,
+            clear_in_insert_mode = true,
+            download_remote_images = true,
+            only_render_image_at_cursor = true,
+            filetypes = {"typst"}
           },
           html = {enabled = false},
           css = {enabled = false}

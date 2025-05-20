@@ -90,6 +90,10 @@ return {
     end
     for server_name, server in pairs(servers) do
       server.capabilities = capabilities
+      if server_name == 'clangd' then
+        -- prevent crashing when encountering non utf-8 characters (e.g. ”)
+        server.capabilities.offsetEncoding = 'utf-32'
+      end
       server.on_attach = lsp_attach
       server.root_markers = {".git"}
       vim.lsp.enable(server_name)

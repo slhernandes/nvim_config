@@ -62,6 +62,8 @@ return {
     end
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities_clangd = require("cmp_nvim_lsp").default_capabilities()
+    capabilities_clangd.offsetEncoding = 'utf-32'
     local lsp_attach = function(_, bufnr)
       local opts = {buffer = bufnr, remap = false}
 
@@ -89,10 +91,11 @@ return {
       end, opts)
     end
     for server_name, server in pairs(servers) do
-      server.capabilities = capabilities
       if server_name == 'clangd' then
         -- prevent crashing when encountering non utf-8 characters (e.g. ”)
-        server.capabilities.offsetEncoding = 'utf-32'
+        server.capabilities = capabilities_clangd
+      else
+        server.capabilities = capabilities
       end
       server.on_attach = lsp_attach
       server.root_markers = {".git"}

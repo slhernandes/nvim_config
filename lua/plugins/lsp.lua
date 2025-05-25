@@ -5,6 +5,7 @@ return {
   },
   config = function()
     require("mason").setup({ui = {border = "rounded"}})
+
     local servers = {
       zls = {},
       tinymist = {},
@@ -53,6 +54,7 @@ return {
         }
       }
     }
+
     for _, method in ipairs({'textDocument/diagnostic', 'workspace/diagnostic'}) do
       local default_diagnostic_handler = vim.lsp.handlers[method]
       vim.lsp.handlers[method] = function(err, result, context, config)
@@ -64,6 +66,7 @@ return {
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local capabilities_clangd = require("cmp_nvim_lsp").default_capabilities()
     capabilities_clangd.offsetEncoding = 'utf-32'
+
     local lsp_attach = function(_, bufnr)
       local opts = {buffer = bufnr, remap = false}
 
@@ -90,6 +93,7 @@ return {
         vim.lsp.buf.signature_help({border = "rounded"})
       end, opts)
     end
+
     for server_name, server in pairs(servers) do
       if server_name == 'clangd' then
         -- prevent crashing when encountering non utf-8 characters (e.g. ”)

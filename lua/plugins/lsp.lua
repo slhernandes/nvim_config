@@ -14,7 +14,11 @@ return {
       gopls = {},
       hyprls = {},
       rust_analyzer = {
-        settings = {diagnostics = {disabled = {"unlinked-file"}}}
+        settings = {
+          diagnostics = {disabled = {"unlinked-file"}},
+          root_dir = ".",
+          init_options = {detachedFiles = {"/tmp/file.rs"}}
+        }
       },
       pylsp = {
         settings = {

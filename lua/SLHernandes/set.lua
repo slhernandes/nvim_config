@@ -20,6 +20,8 @@ vim.opt.undodir = (os.getenv("XDG_DATA_HOME") or
 vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 vim.opt.termguicolors = true
 

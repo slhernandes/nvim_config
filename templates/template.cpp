@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define debug(x) std::cerr << #x << ": " << x << std::endl;
+#define dbg(x) println(stderr, "[{}:{}] {} => {}", __FILE__, __LINE__, #x, x)
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 

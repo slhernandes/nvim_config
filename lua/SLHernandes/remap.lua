@@ -10,7 +10,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- delete to null register
 vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
--- change indentation 
+-- change indentation
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 --[[vim.keymap.set("n", "<leader>fc", function()
@@ -37,11 +37,12 @@ vim.keymap.set("n", "<leader>tc", function() vim.cmd("tabc") end)
 vim.keymap.set("n", "<leader>bn", function() vim.cmd("bn") end)
 vim.keymap.set("n", "<leader>bp", function() vim.cmd("bp") end)
 vim.keymap.set("n", "<leader>bc", function() vim.cmd("bd") end)
+vim.keymap.set("n", "<leader>bq", function() vim.cmd("%bd|e#") end)
 -- quickfix hotkeys
 vim.keymap.set("n", "<leader>cc", function() vim.cmd("cc") end)
 vim.keymap.set("n", "<M-n>", function() vim.cmd("cn") end)
 vim.keymap.set("n", "<M-p>", function() vim.cmd("cp") end)
--- alt + [HJKL] to resize to adjecent window 
+-- alt + [HJKL] to resize to adjecent window
 vim.keymap.set("n", "<M-H>", function()
   if vim.fn.winnr() == vim.fn.winnr("l") then
     vim.cmd("wincmd 5>")
@@ -70,7 +71,7 @@ vim.keymap.set("n", "<M-L>", function()
     vim.cmd("wincmd 5>")
   end
 end)
--- alt + [hjkl] to move to adjecent window 
+-- alt + [hjkl] to move to adjecent window
 vim.keymap.set("n", "<M-h>", function()
   if vim.fn.winnr() == vim.fn.winnr("h") then
     os.execute("tmux if -F '#{pane_at_left}' '' 'select-pane -L'")

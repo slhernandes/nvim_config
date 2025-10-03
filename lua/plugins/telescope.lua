@@ -72,6 +72,7 @@ return {
       vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
       vim.keymap.set('n', '<leader>pm', builtin.man_pages, {})
       vim.keymap.set('n', '<leader>pd', '<cmd>Telescope hoogle<CR>', {})
+      vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
     end
   }
 }

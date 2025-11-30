@@ -1,7 +1,7 @@
 return {
-  'norcalli/nvim-colorizer.lua',
+  'catgoose/nvim-colorizer.lua',
   config = function()
-    require("colorizer").setup({'css', 'html', 'conf', 'lua', 'tmux'}, {
+    require("colorizer").setup({ 'css', 'html', 'conf', 'lua', 'tmux' }, {
       RGB = true,
       RRGGBB = true,
       names = true,

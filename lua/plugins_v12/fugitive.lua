@@ -1,0 +1,6 @@
+vim.pack.add({'https://github.com/tpope/vim-fugitive'})
+vim.keymap.set("n", "<leader>gs", function()
+  vim.cmd.Git()
+  vim.cmd("wincmd L")
+  vim.cmd("wincmd 75|")
+end)

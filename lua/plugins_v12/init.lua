@@ -11,12 +11,14 @@ local plugins = {
 "telescope",
 "toggleterm",
 "treesitter",
+"trouble",
 "undotree",
 "yazi",
 "showkeys",
 "completion",
 "lsp",
 "ocaml",
+"noice",
 }
 for _, plugin in ipairs(plugins) do
   require("plugins_v12." .. plugin)

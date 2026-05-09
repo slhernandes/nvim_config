@@ -1,4 +1,7 @@
-vim.pack.add({"https://github.com/nvim-treesitter/nvim-treesitter"})
+vim.pack.add({
+  "https://github.com/neovim-treesitter/treesitter-parser-registry",
+  "https://github.com/neovim-treesitter/nvim-treesitter",
+})
 
 require'nvim-treesitter.install'.compilers = {"gcc-12", "clang", "gcc"}
 require'nvim-treesitter.configs'.setup {

@@ -1,6 +1,7 @@
 vim.pack.add({
   'https://github.com/nvim-lualine/lualine.nvim',
-  'https://github.com/kyazdani42/nvim-web-devicons'
+  'https://github.com/kyazdani42/nvim-web-devicons',
+  "https://github.com/folke/noice.nvim",
 })
 
 require("nvim-web-devicons").setup({})
@@ -23,7 +24,15 @@ require('lualine').setup {
     lualine_a = {nonicons_extention.mode},
     lualine_b = {{"branch", icon = icons.get("git-branch")}, 'diff'},
     lualine_c = {'buffers'},
-    lualine_x = {'diagnostics'},
+    lualine_x = {'diagnostics', {
+      function()
+        local mode = require("noice").api.statusline.mode.get()
+        return string.gsub(mode, "recording ", "🔴")
+      end,
+      cond = require("noice").api.statusline.mode.has,
+      color = { fg = "#ff9e64" },
+    }
+  },
     lualine_y = {'filetype'},
     lualine_z = {'location'}
   },

@@ -10,7 +10,7 @@ local plugins = {
 "lualine",
 "telescope",
 "toggleterm",
-"treesitter",
+-- "treesitter",
 "trouble",
 "undotree",
 "yazi",

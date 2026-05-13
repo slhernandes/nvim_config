@@ -62,6 +62,16 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local capabilities_clangd = require("cmp_nvim_lsp").default_capabilities()
 capabilities_clangd.offsetEncoding = 'utf-32'
 
+vim.diagnostic.config({
+  float = {
+    border = "rounded",
+  },
+})
+
+vim.keymap.set('n', '<Leader>k', function()
+  vim.diagnostic.open_float()
+end, { desc = 'Show line diagnostics' })
+
 local lsp_attach = function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
 

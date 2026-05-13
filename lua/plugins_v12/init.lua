@@ -1,4 +1,5 @@
 local plugins = {
+"autoformat",
 "colorschemes",
 "colorizer",
 "compile_mode",

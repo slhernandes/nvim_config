@@ -1,18 +1,38 @@
-vim.api.nvim_exec2([[
-  autocmd BufNewFile [0-9]*.cpp 0r ~/.config/nvim/templates/template.cpp
-  ]], { output = false })
-vim.api.nvim_exec2([[
-  autocmd BufNewFile aoc*.rs 0r ~/.config/nvim/templates/template.rs
-  ]], { output = false })
-vim.api.nvim_exec2([[
-  autocmd BufNewFile *.cc 0r ~/.config/nvim/templates/opp_template.cc
-  ]], { output = false })
-vim.api.nvim_exec2([[
-  autocmd BufNewFile *.ned 0r ~/.config/nvim/templates/opp_template.ned
-  ]], { output = false })
-vim.api.nvim_exec2([[
-  autocmd BufNewFile *.ini 0r ~/.config/nvim/templates/opp_template.ini
-  ]], { output = false })
-vim.api.nvim_exec2([[
-  autocmd BufNewFile *.typ 0r ~/.config/nvim/templates/template.typ
-  ]], { output = false })
+local template_dir = vim.fn.stdpath("config") .. "/templates/"
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "[0-9]*.cpp",
+  group = vim.api.nvim_create_augroup("template", {clear = false}),
+  desc = "C++ template creation (codeforces)",
+  command = "0r " .. template_dir .. "template.cpp"
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "aoc*.rs",
+  group = vim.api.nvim_create_augroup("template", {clear = false}),
+  desc = "Rust template creation (AOC)",
+  command = "0r " .. template_dir .. "template.rs"
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.cc",
+  group = vim.api.nvim_create_augroup("template", {clear = false}),
+  desc = "C++ Template creation (OMNeT++)",
+  command = "0r " .. template_dir .. "opp_template.cc"
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.ned",
+  group = vim.api.nvim_create_augroup("template", {clear = false}),
+  desc = "Ned template creation (OMNeT++)",
+  command = "0r " .. template_dir .. "opp_template.ned"
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.ini",
+  group = vim.api.nvim_create_augroup("template", {clear = false}),
+  desc = "Ini template creation (OMNeT++)",
+  command = "0r " .. template_dir .. "opp_template.ini"
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.typ",
+  group = vim.api.nvim_create_augroup("template", {clear = false}),
+  desc = "Typst template creation",
+  command = "0r " .. template_dir .. "template.typ"
+})

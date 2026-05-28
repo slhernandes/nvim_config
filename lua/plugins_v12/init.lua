@@ -1,26 +1,7 @@
 local plugins = {
-"autoformat",
-"colorschemes",
-"colorizer",
-"compile_mode",
-"context",
-"devicons",
-"fugitive",
-"harpoon",
-"snacks",
-"lualine",
-"telescope",
-"toggleterm",
--- "treesitter",
-"trouble",
-"undotree",
-"yazi",
-"showkeys",
-"completion",
-"lsp",
-"ocaml",
-"noice",
+  "autoformat", "colorizer", "colorschemes", "compile_mode", "completion",
+  "context", "devicons", "fugitive", "harpoon", "lsp", "lualine", -- "noice",
+  "ocaml", "python", "showkeys", "snacks", "telescope", "toggleterm",
+  "treesitter", "trouble", "undotree", "yazi"
 }
-for _, plugin in ipairs(plugins) do
-  require("plugins_v12." .. plugin)
-end
+for _, plugin in ipairs(plugins) do require("plugins_v12." .. plugin) end

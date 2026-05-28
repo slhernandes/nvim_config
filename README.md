@@ -29,8 +29,8 @@ git clone https://github.com/slhernandes/nvim_config.git $HOME/.config/nvim
 ```sh
 nvim .
 ```
-, and if the plugins are not loaded or not updated, type:
+To update the plugins type
 ```vim
-:Lazy sync
+:=vim.pack.update()
 ```
-to sync the plugins.
+, and then type `:w` after reviewing the update log to write the update to the disk.

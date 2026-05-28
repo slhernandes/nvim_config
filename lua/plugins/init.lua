@@ -4,4 +4,4 @@ local plugins = {
   "ocaml", "python", "showkeys", "snacks", "telescope", "toggleterm",
   "treesitter", "trouble", "undotree", "yazi"
 }
-for _, plugin in ipairs(plugins) do require("plugins_v12." .. plugin) end
+for _, plugin in ipairs(plugins) do require("plugins." .. plugin) end

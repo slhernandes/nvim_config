@@ -1,2 +1,2 @@
 require("SLHernandes")
-require("plugins_v12")
+require("plugins")

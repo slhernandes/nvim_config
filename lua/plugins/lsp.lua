@@ -1,7 +1,5 @@
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/hrsh7th/cmp-nvim-lsp",
-  "https://github.com/hrsh7th/nvim-cmp",
   "https://github.com/mason-org/mason.nvim"
 })
 
@@ -68,11 +66,9 @@ local lsp_attach = function(_, bufnr)
 end
 
 for server_name, server_cfg in pairs(servers) do
-  server_cfg.capabilities = require("cmp_nvim_lsp").default_capabilities()
-  if server_name == 'clangd' then
-    -- prevent crashing when encountering non utf-8 characters (e.g. ”)
-    server_cfg.capabilities.offsetEncoding = "utf-32"
-  end
+  -- if server_name == 'clangd' then
+  --   server_cfg.capabilities.offsetEncoding = "utf-32"
+  -- end
   server_cfg.on_attach = server_cfg.on_attach or lsp_attach
   server_cfg.root_markers = server_cfg.root_markers or {".git"}
   vim.lsp.enable(server_name)

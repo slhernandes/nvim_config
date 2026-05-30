@@ -1,28 +1,16 @@
 {
   "plugins": {
-    "LuaSnip": {
-      "rev": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24",
-      "src": "https://github.com/L3MON4D3/LuaSnip"
-    },
     "autoformat.nvim": {
       "rev": "4c3c5ac6277e43962d2055094dd7c33267fc3c59",
       "src": "https://github.com/slhernandes/autoformat.nvim"
     },
-    "cmp-calc": {
-      "rev": "5947b412da67306c5b68698a02a846760059be2e",
-      "src": "https://github.com/hrsh7th/cmp-calc"
+    "blink.cmp": {
+      "rev": "5ee69ea52492fa038b3a1cd8de55edffe205c77d",
+      "src": "https://github.com/saghen/blink.cmp"
     },
-    "cmp-nvim-lsp": {
-      "rev": "cbc7b02bb99fae35cb42f514762b89b5126651ef",
-      "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
-    },
-    "cmp-omni": {
-      "rev": "4ef610bbd85a5ee4e97e09450c0daecbdc60de86",
-      "src": "https://github.com/hrsh7th/cmp-omni"
-    },
-    "cmp_luasnip": {
-      "rev": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90",
-      "src": "https://github.com/saadparwaiz1/cmp_luasnip"
+    "blink.lib": {
+      "rev": "2cb62890cee636fe46722d03b7b2331e54fb3755",
+      "src": "https://github.com/saghen/blink.lib"
     },
     "harpoon": {
       "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
@@ -33,10 +21,6 @@
       "rev": "8705984384b2d89ebf4950dc4504478b7c0fd380",
       "src": "https://github.com/sheng-tse/jupynvim.git"
     },
-    "lspkind.nvim": {
-      "rev": "c7274c48137396526b59d86232eabcdc7fed8a32",
-      "src": "https://github.com/onsails/lspkind.nvim"
-    },
     "lualine.nvim": {
       "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -44,10 +28,6 @@
     "mason.nvim": {
       "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
       "src": "https://github.com/mason-org/mason.nvim"
-    },
-    "nvim-cmp": {
-      "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
-      "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-colorizer.lua": {
       "rev": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde",
@@ -72,10 +52,6 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
-    },
-    "showkeys": {
-      "rev": "cb0a50296f11f1e585acffba8c253b9e8afc1f84",
-      "src": "https://github.com/nvzone/showkeys"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",

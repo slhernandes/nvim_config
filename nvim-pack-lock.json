@@ -8,10 +8,6 @@
       "rev": "4c3c5ac6277e43962d2055094dd7c33267fc3c59",
       "src": "https://github.com/slhernandes/autoformat.nvim"
     },
-    "baleia.nvim": {
-      "rev": "32617940adb2eea56e85a64883a19961ceac9641",
-      "src": "https://github.com/m00qek/baleia.nvim"
-    },
     "cmp-calc": {
       "rev": "5947b412da67306c5b68698a02a846760059be2e",
       "src": "https://github.com/hrsh7th/cmp-calc"
@@ -27,10 +23,6 @@
     "cmp_luasnip": {
       "rev": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90",
       "src": "https://github.com/saadparwaiz1/cmp_luasnip"
-    },
-    "compile-mode.nvim": {
-      "rev": "dd3e952076a33faba0a55b04b2b73945832c0527",
-      "src": "https://github.com/ej-shafran/compile-mode.nvim"
     },
     "harpoon": {
       "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
@@ -50,7 +42,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason.nvim": {
-      "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
+      "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "nvim-cmp": {
@@ -58,11 +50,11 @@
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-colorizer.lua": {
-      "rev": "5cfe7fffbd01e17b3c1e14af85d5febdef88bd8c",
+      "rev": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
+      "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nonicons": {
@@ -74,7 +66,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-web-devicons": {
-      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
+      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
       "src": "https://github.com/kyazdani42/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -119,7 +111,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "yazi.nvim": {
-      "rev": "c45cc195a871cd83eb2c901dd0269af3b2921bee",
+      "rev": "07f3351317c28daefb3cf1bc6ac9846acf13b4d5",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

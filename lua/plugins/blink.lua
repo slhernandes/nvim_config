@@ -6,7 +6,7 @@ local cmp = require("blink.cmp")
 cmp.build():pwait()
 cmp.setup({
   completion = {
-    ghost_text = {enabled = true},
+    -- ghost_text = {enabled = true},
     menu = {
       draw = {
         components = {
@@ -20,6 +20,6 @@ cmp.setup({
         }
       }
     },
-    documentation = {window = {max_width = 25}, auto_show = false}
+    documentation = { window = { max_width = 25 }, auto_show = false }
   }
 })

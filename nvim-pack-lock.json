@@ -5,11 +5,11 @@
       "src": "https://github.com/slhernandes/autoformat.nvim"
     },
     "blink.cmp": {
-      "rev": "5ee69ea52492fa038b3a1cd8de55edffe205c77d",
+      "rev": "7c0fae7fb37c4ee43927df88f4f1b7eb8e33a520",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
-      "rev": "2cb62890cee636fe46722d03b7b2331e54fb3755",
+      "rev": "c09dd66e9ad97e1a7777f3fa5f0504ca2e877231",
       "src": "https://github.com/saghen/blink.lib"
     },
     "harpoon": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/sheng-tse/jupynvim.git"
     },
     "lualine.nvim": {
-      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason.nvim": {
@@ -87,7 +87,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "yazi.nvim": {
-      "rev": "07f3351317c28daefb3cf1bc6ac9846acf13b4d5",
+      "rev": "d4912adef07b330baf0fc92a4a621a4cbfb3e826",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

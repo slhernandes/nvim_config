@@ -73,9 +73,6 @@ local lsp_attach = function(client, bufnr)
 end
 
 for server_name, server_cfg in pairs(servers) do
-  -- if server_name == 'clangd' then
-  --   server_cfg.capabilities.offsetEncoding = "utf-32"
-  -- end
   server_cfg.on_attach = server_cfg.on_attach or lsp_attach
   server_cfg.root_markers = server_cfg.root_markers or {".git"}
   vim.lsp.enable(server_name)

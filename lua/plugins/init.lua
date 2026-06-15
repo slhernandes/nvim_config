@@ -4,3 +4,4 @@ local plugins = {
   "telescope", "toggleterm", "treesitter", "trouble", "undotree", "yazi"
 }
 for _, plugin in ipairs(plugins) do require("plugins." .. plugin) end
+vim.api.nvim_create_user_command("PackUpdate", ":=vim.pack.update()", {})

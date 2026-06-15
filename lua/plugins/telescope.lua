@@ -1,7 +1,10 @@
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/luc-tielen/telescope_hoogle',
-  {src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.1.9'}
+  'https://github.com/luc-tielen/telescope_hoogle', {
+    src = 'https://github.com/nvim-telescope/telescope.nvim',
+    version = vim.version.range('*')
+  }
+  -- {src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.1.9'}
 })
 local icons = require("nvim-nonicons")
 local action_set = require("telescope.actions.set")

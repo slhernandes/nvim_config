@@ -16,7 +16,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = (os.getenv("XDG_DATA_HOME") or
-  (os.getenv("HOME") .. "/.local/share")) .. "/vim/undodir"
+                      (os.getenv("HOME") .. "/.local/share")) .. "/vim/undodir"
 vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -35,10 +35,12 @@ vim.opt.splitbelow = true
 
 vim.opt.conceallevel = 3
 
-vim.filetype.add({ extension = { ned = 'ned' } })
+vim.filetype.add({extension = {ned = 'ned'}})
 
 vim.opt.list = true
 vim.opt.lcs = "tab: 󰌒,trail:·,precedes:⋱"
+
+vim.opt.iskeyword = "@,48-57,192-255"
 
 vim.opt.showmode = false
 

@@ -103,3 +103,10 @@ vim.keymap.set("n", "<M-l>", function()
     vim.cmd("wincmd l")
   end
 end)
+
+vim.keymap.set("n", "<C-y>", function()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  vim.cmd("norm yyp")
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_win_set_cursor(0, {row, col})
+end)

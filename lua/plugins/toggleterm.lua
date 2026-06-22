@@ -1,10 +1,10 @@
 vim.pack.add({'https://github.com/akinsho/toggleterm.nvim'})
 local dir_fn = function()
-  local width = vim.api.nvim_win_get_width(0)
-  local height = vim.api.nvim_win_get_height(0)
+  local width = vim.o.columns
+  local height = vim.o.lines
   local width_px = width * 10
   local height_px = height * 20
-  if width_px >= height_px then
+  if width_px > height_px + 40 then
     return "vertical"
   else
     return "horizontal"
@@ -14,12 +14,12 @@ require("toggleterm").setup({
   direction = dir_fn(),
   -- size can be a number or function which is passed the current terminal
   size = function(term)
-    local width = vim.api.nvim_win_get_width(0)
-    local height = vim.api.nvim_win_get_height(0)
+    local width = vim.o.columns
+    local height = vim.o.lines
     if term.direction == "horizontal" then
-      return height / 4
+      return math.min(math.max(height / 4, 10), height)
     elseif term.direction == "vertical" then
-      return 2 * width / 5
+      return math.min(math.max(2 * width / 5, 35), width)
     end
   end,
   open_mapping = nil, -- no default open mapping

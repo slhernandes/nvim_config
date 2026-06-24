@@ -87,7 +87,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "yazi.nvim": {
-      "rev": "3c7229b0b86fe7a6fadcb89d66ea57423cc21904",
+      "rev": "4b167eeafcf84cc78a9d9cd4b1f945533e0cc5b9",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

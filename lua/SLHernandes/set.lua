@@ -1,5 +1,4 @@
-vim.opt.guicursor = ""
-
+vim.opt.guicursor = "a:block"
 vim.opt.nu = true
 vim.opt.rnu = true
 

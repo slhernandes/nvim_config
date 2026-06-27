@@ -1,6 +1,7 @@
 -- set mapleader as space
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.keymap.set("n", "<C-l>", ":noh<CR>", {silent = true})
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- copy/paste to/from clipboard
 vim.keymap.set({"n", "v"}, "<leader>yy", "\"+y")

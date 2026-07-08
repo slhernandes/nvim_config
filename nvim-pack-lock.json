@@ -5,7 +5,7 @@
       "src": "https://github.com/slhernandes/autoformat.nvim"
     },
     "blink.cmp": {
-      "rev": "bda905a4bf1b3edfa708b0be193b8c63d8620c96",
+      "rev": "9dcb1f3a9164f10c8950a790aace576f2e89dc78",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -34,7 +34,7 @@
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
+      "rev": "d224a1920728ba129880efc700d4a0180ac4ecbb",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nonicons": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-web-devicons": {
-      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
+      "rev": "dad71387de386a946b123079d0e53f23028f3abd",
       "src": "https://github.com/kyazdani42/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -87,7 +87,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "yazi.nvim": {
-      "rev": "62fdb474b91c2e99a3a1b4220b79dddc16e808d0",
+      "rev": "668cd1f1045c4b929b6292bafc084d5c699770e6",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

@@ -7,4 +7,5 @@ require("snacks").setup({
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
   },
+  picker = {enabled = true, ui_select = true}
 })

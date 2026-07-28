@@ -1,14 +1,11 @@
 vim.pack.add({
-  "https://github.com/nvim-lua/plenary.nvim",
-  {src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2"}
+  "https://github.com/nvim-lua/plenary.nvim", {src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2"}
 })
 local harpoon = require("harpoon")
 harpoon:setup()
 
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end,
-               {desc = '[h]arpoon [a]dd'})
-vim.keymap.set("n", "<leader>he",
-               function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = '[h]arpoon [a]dd'})
+vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
                {desc = '[h]arpoon [e]dit'})
 
 vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
@@ -19,7 +16,5 @@ vim.keymap.set("n", "<C-n>", function() harpoon:list():select(5) end)
 vim.keymap.set("n", "<C-m>", function() harpoon:list():select(6) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end,
-               {desc = '[h]arpoon [p]rev'})
-vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end,
-               {desc = '[h]arpoon [n]ext'})
+vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, {desc = '[h]arpoon [p]rev'})
+vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, {desc = '[h]arpoon [n]ext'})

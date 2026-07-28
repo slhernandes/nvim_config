@@ -1,19 +1,10 @@
-vim.pack.add({
-  "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/mason-org/mason.nvim"
-})
+vim.pack.add({"https://github.com/neovim/nvim-lspconfig", "https://github.com/mason-org/mason.nvim"})
 
 require("mason").setup({ui = {border = "rounded"}})
 
 local servers = {
   ty = {},
-  matlab_ls = {
-    settings = {
-      MATLAB = {
-        installPath = os.getenv("HOME") .. "/Dokumente/srcs/MATLAB_2024a"
-      }
-    }
-  },
+  matlab_ls = {settings = {MATLAB = {installPath = os.getenv("HOME") .. "/Dokumente/srcs/MATLAB_2024a"}}},
   zls = {},
   tinymist = {},
   fennel_ls = {},
@@ -33,19 +24,15 @@ local servers = {
     on_init = function(client)
       if client.workspace_folders then
         local path = client.workspace_folders[1].name
-        if vim.uv.fs_stat(path .. '/.luarc.json') or
-            vim.uv.fs_stat(path .. '/.luarc.jsonc') then return end
+        if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then return end
       end
 
-      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config
-                                                           .settings.Lua, {
+      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
         runtime = {version = 'LuaJIT'},
         workspace = {checkThirdParty = false, library = {vim.env.VIMRUNTIME}}
       })
     end,
-    settings = {
-      Lua = {diagnostics = {globals = {'vim'}, disable = {'missing-fields'}}}
-    }
+    settings = {Lua = {diagnostics = {globals = {'vim'}, disable = {'missing-fields'}}, format = {enable = true}}}
   }
 }
 
@@ -62,22 +49,13 @@ vim.diagnostic.config({float = {border = "rounded"}})
 local lsp_attach = function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "K",
-                 function() vim.lsp.buf.hover({border = "rounded"}) end, opts)
-  vim.keymap.set('n', '<Leader>k', function() vim.diagnostic.open_float() end,
-                 {desc = 'Show line diagnostics'})
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover({border = "rounded"}) end, opts)
+  vim.keymap.set('n', '<Leader>k', function() vim.diagnostic.open_float() end, {desc = 'Show line diagnostics'})
   vim.keymap.set('n', "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
-                 opts)
-  vim.keymap.set("n", "<leader>vsh", function()
-    vim.lsp.buf.signature_help({border = "rounded"})
-  end, opts)
-  vim.keymap.set("i", "<C-h>", function()
-    vim.lsp.buf.signature_help({border = "rounded"})
-  end, opts)
-  if client.name == "qmlls" then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
+  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+  vim.keymap.set("n", "<leader>vsh", function() vim.lsp.buf.signature_help({border = "rounded"}) end, opts)
+  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help({border = "rounded"}) end, opts)
+  if client.name == "qmlls" then client.server_capabilities.semanticTokensProvider = nil end
 end
 
 for server_name, server_cfg in pairs(servers) do

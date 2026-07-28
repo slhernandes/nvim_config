@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
     end
   end
 })
-vim.pack.add({ "https://github.com/sheng-tse/jupynvim.git" })
+vim.pack.add({"https://github.com/sheng-tse/jupynvim.git"})
 require("jupynvim").setup({
   log_level = "info",
   image_renderer = "placeholder", -- "placeholder", "kitty", or "chafa"

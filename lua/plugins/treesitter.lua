@@ -1,1 +1,1 @@
-vim.treesitter.language.register('qmljs', { 'qml' })
+vim.treesitter.language.register('qmljs', {'qml'})

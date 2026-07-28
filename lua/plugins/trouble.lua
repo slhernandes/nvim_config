@@ -1,8 +1,4 @@
-
-vim.pack.add({
-  "https://github.com/kyazdani42/nvim-web-devicons",
-  "https://github.com/folke/trouble.nvim",
-})
+vim.pack.add({"https://github.com/kyazdani42/nvim-web-devicons", "https://github.com/folke/trouble.nvim"})
 
 require("trouble").setup()
 vim.keymap.set("n", "<leader>tt", "<cmd>Trouble telescope toggle focus=true follow=true<CR>")

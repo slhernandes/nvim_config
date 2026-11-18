@@ -5,11 +5,11 @@
       "src": "https://github.com/slhernandes/autoformat.nvim"
     },
     "blink.cmp": {
-      "rev": "71dc7545c1f399c7f76eeef80efa1d8bda0ff471",
+      "rev": "3d3631f641e6e9b60066f269f435d23c524ceeb0",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
-      "rev": "5876dd95deeb70aadbe9f1c0b7117a135061cdac",
+      "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
       "src": "https://github.com/saghen/blink.lib"
     },
     "harpoon": {
@@ -18,8 +18,12 @@
       "version": "'harpoon2'"
     },
     "jupynvim": {
-      "rev": "666717172ea4b008af0a3361dd1794cfd3b2ac44",
+      "rev": "7f35c2208bc6daa889b12a7bc135688569b4d2d4",
       "src": "https://github.com/sheng-tse/jupynvim.git"
+    },
+    "lean.nvim": {
+      "rev": "5f759412341a370ac7a9e3308fb99d597f2970b3",
+      "src": "https://github.com/Julian/lean.nvim"
     },
     "lualine.nvim": {
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
@@ -30,11 +34,11 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "nvim-colorizer.lua": {
-      "rev": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde",
+      "rev": "72a05f62c52241bc7441c820eb53946f92b2e6a4",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "d6ac7a0d46555d44bf21f4f9c65f5201f818b475",
+      "rev": "e1c6a5a45d95ad22cf55c874db2ff8ab969556f0",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nonicons": {
@@ -42,11 +46,11 @@
       "src": "https://github.com/yamatsum/nvim-nonicons"
     },
     "nvim-treesitter-context": {
-      "rev": "b311b30818951d01f7b4bf650521b868b3fece16",
+      "rev": "8decd73460d26ef0a0befb745d022dd1fc2c38b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-web-devicons": {
-      "rev": "dad71387de386a946b123079d0e53f23028f3abd",
+      "rev": "0dc0cfb0c6858041174a53c7aa4adaf65e994b3c",
       "src": "https://github.com/kyazdani42/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -63,7 +67,7 @@
       "version": ">=0.0.0"
     },
     "telescope_hoogle": {
-      "rev": "14be34fd5c464e3da0992ad094f157b0b8b098f9",
+      "rev": "5cef29de23066d75549c73c9936eb8afef6be1c7",
       "src": "https://github.com/luc-tielen/telescope_hoogle"
     },
     "toggleterm.nvim": {
@@ -87,7 +91,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "yazi.nvim": {
-      "rev": "bba4c0579e4247729bf71b4104471eb131516922",
+      "rev": "2acab2bedac8be0adbda70d46edf4080f754ca4f",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
